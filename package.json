@@ -1,6 +1,6 @@
 {
   "name": "basic-react-component-library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "basic-react-component-library React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -20,7 +20,9 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
-  "dependencies": {},
+  "dependencies": {
+    "npm": "^5.8.0"
+  },
   "peerDependencies": {
     "prop-types": "15.x",
     "react": "16.x"
