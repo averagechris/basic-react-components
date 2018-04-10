@@ -14,8 +14,23 @@ class Form extends Component {
     this.renderChildren = this.renderChildren.bind(this);
   }
   updateFormState({ fieldName, newValue }) {
+    let { applyToChanges } = this.props;
+    let transformedValue = newValue;
+
+    // apply each function if it returns a value
+    applyToChanges.forEach(f => {
+      transformation = f({ fieldName, value: transformedValue });
+      if (transformation) {
+        transformedValue = transformation;
+      }
+    });
+
+    // call onChange with transformed values and set new state
     this.setState(s => {
-      let newState = { ...s, form: { ...s.form, [fieldName]: newValue } };
+      let newState = {
+        ...s,
+        form: { ...s.form, [fieldName]: transformedValue }
+      };
       this.props.onChange && this.props.onChange(newState.form);
       return newState;
     });
@@ -66,12 +81,14 @@ class Form extends Component {
 }
 
 Form.propTypes = {
+  applyToChanges: PropTypes.arrayOf(PropTypes.func),
   containerClasses: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func,
   onSubmit: PropTypes.func.isRequired
 };
 
 Form.defaultProps = {
+  applyToChanges: [() => {}],
   containerClasses: []
 };
 
