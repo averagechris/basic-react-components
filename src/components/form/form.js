@@ -17,10 +17,10 @@ class Form extends Component {
     let { applyToChanges } = this.props;
     let transformedValue = newValue;
 
-    // apply each function if it returns a value
+    // apply each function if it returns something
     applyToChanges.forEach(f => {
-      transformation = f({ fieldName, value: transformedValue });
-      if (transformation) {
+      let transformation = f({ fieldName, value: transformedValue });
+      if (typeof transformation === "string") {
         transformedValue = transformation;
       }
     });

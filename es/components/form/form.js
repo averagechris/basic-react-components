@@ -33,11 +33,25 @@ var Form = function (_Component) {
 
     var fieldName = _ref.fieldName,
         newValue = _ref.newValue;
+    var applyToChanges = this.props.applyToChanges;
 
+    var transformedValue = newValue;
+
+    // apply each function if it returns something
+    applyToChanges.forEach(function (f) {
+      var transformation = f({ fieldName: fieldName, value: transformedValue });
+      if (typeof transformation === "string") {
+        transformedValue = transformation;
+      }
+    });
+
+    // call onChange with transformed values and set new state
     this.setState(function (s) {
       var _extends2;
 
-      var newState = _extends({}, s, { form: _extends({}, s.form, (_extends2 = {}, _extends2[fieldName] = newValue, _extends2)) });
+      var newState = _extends({}, s, {
+        form: _extends({}, s.form, (_extends2 = {}, _extends2[fieldName] = transformedValue, _extends2))
+      });
       _this2.props.onChange && _this2.props.onChange(newState.form);
       return newState;
     });
@@ -99,12 +113,14 @@ var Form = function (_Component) {
 }(Component);
 
 Form.propTypes = process.env.NODE_ENV !== "production" ? {
+  applyToChanges: PropTypes.arrayOf(PropTypes.func),
   containerClasses: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func,
   onSubmit: PropTypes.func.isRequired
 } : {};
 
 Form.defaultProps = {
+  applyToChanges: [function () {}],
   containerClasses: []
 };
 
