@@ -1,7 +1,7 @@
 import React from "react";
 
 export default props => (
-  <div className="pointer" onClick={props.onClick}>
+  <div className="pointer w1" onClick={props.onClick}>
     <svg height="12px" width="12px" version="1.1" xmlns="http://www.w3.org/svg">
       <line
         x1="1"
