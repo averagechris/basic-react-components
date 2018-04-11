@@ -9,6 +9,7 @@ import Form from "../src/components/form/form.js";
 import FormInput from "../src/components/form/formInput.js";
 import Gallery from "../src/components/modal/gallery.js";
 import Modal from "../src/components/modal/modal.js";
+import Select from "../src/components/form/select.js";
 import TagItem from "../src/components/tagItem.js";
 
 storiesOf("Button", module).add("default", () => (
@@ -113,3 +114,13 @@ storiesOf("TagItem", module).add("defualt", () => (
     </TagItem>
   </div>
 ));
+
+storiesOf("Select", module).add("default", () => {
+  return (
+    <div className="measure ma2 center">
+      <Select
+        options={[{ text: "hello" }, { text: "world" }, { text: "fuck you" }]}
+      />
+    </div>
+  );
+});

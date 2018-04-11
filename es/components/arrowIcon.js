@@ -5,15 +5,51 @@ import PropTypes from "prop-types";
 
 import { propValidator } from "../helpers.js";
 
-var POINTS_MAP = {
-  right: [{ x1: "1", y1: "1", x2: "25", y2: "20" }, { x1: "1", y1: "40", x2: "25", y2: "20" }],
-  left: [{ x1: "1", y1: "20", x2: "25", y2: "40" }, { x1: "1", y1: "20", x2: "25", y2: "1" }],
-  up: [{ x1: "20", y1: "1", x2: "1", y2: "25" }, { x1: "20", y1: "1", x2: "40", y2: "25" }],
-  down: [{ x1: "20", y1: "25", x2: "1", y2: "1" }, { x1: "20", y1: "25", x2: "40", y2: "1" }]
+var getPoints = function getPoints(max, min, direction) {
+  var points_map = {
+    right: [{
+      x1: min,
+      y1: min,
+      x2: Math.floor(max * 0.5),
+      y2: Math.floor(max * 0.5)
+    }, { x1: min, y1: max, x2: Math.floor(max * 0.5), y2: Math.floor(max * 0.5) }],
+    left: [{
+      x1: min,
+      y1: Math.floor(max * 0.5),
+      x2: Math.floor(max * 0.5),
+      y2: max
+    }, { x1: min, y1: Math.floor(max * 0.5), x2: Math.floor(max * 0.5), y2: min }],
+    up: [{
+      x1: Math.floor(max * 0.5),
+      y1: min,
+      x2: min,
+      y2: Math.floor(max * 0.63)
+    }, {
+      x1: Math.floor(max * 0.5),
+      y1: min,
+      x2: max,
+      y2: Math.floor(max * 0.63)
+    }],
+    down: [{
+      x1: Math.floor(max * 0.5),
+      y1: Math.floor(max * 0.63),
+      x2: min,
+      y2: min
+    }, {
+      x1: Math.floor(max * 0.5),
+      y1: Math.floor(max * 0.63),
+      x2: max,
+      y2: min
+    }]
+  };
+
+  return points_map[direction];
 };
 
 var ArrowIcon = function ArrowIcon(_ref) {
-  var color = _ref.color,
+  var additionalContainerClasses = _ref.additionalContainerClasses,
+      containerClasses = _ref.containerClasses,
+      color = _ref.color,
       direction = _ref.direction,
       disabled = _ref.disabled,
       height = _ref.height,
@@ -22,23 +58,29 @@ var ArrowIcon = function ArrowIcon(_ref) {
       strokeOpacity = _ref.strokeOpacity,
       onClick = _ref.onClick;
 
+  var maxSize = height > width ? height : width;
+  var points = getPoints(maxSize, 1, direction);
+
   return React.createElement(
     "div",
-    { className: "pointer w2 ma2 dim", onClick: onClick },
+    {
+      className: [].concat(containerClasses, additionalContainerClasses).join(" "),
+      onClick: onClick
+    },
     React.createElement(
       "svg",
       {
-        height: height,
-        width: width,
+        height: height + "px",
+        width: width + "px",
         version: "1.1",
         xmlns: "http://www.w3.org/svg"
       },
-      React.createElement("line", _extends({}, POINTS_MAP[direction][0], {
+      React.createElement("line", _extends({}, points[0], {
         stroke: color,
         strokeOpacity: strokeOpacity,
         strokeWidth: strokeWidth
       })),
-      React.createElement("line", _extends({}, POINTS_MAP[direction][1], {
+      React.createElement("line", _extends({}, points[1], {
         stroke: color,
         strokeOpacity: strokeOpacity,
         strokeWidth: strokeWidth
@@ -48,21 +90,25 @@ var ArrowIcon = function ArrowIcon(_ref) {
 };
 
 ArrowIcon.propTypes = process.env.NODE_ENV !== "production" ? {
+  additionalContainerClasses: PropTypes.arrayOf(PropTypes.string),
+  containerClasses: PropTypes.arrayOf(PropTypes.string),
   color: PropTypes.oneOf(["white", "black"]),
   disabled: PropTypes.bool,
   direction: PropTypes.oneOf(["right", "left", "up", "down"]).isRequired,
-  height: propValidator.endsWithpx,
-  width: propValidator.endsWithpx,
+  height: PropTypes.number,
+  width: PropTypes.number,
   strokeWidth: propValidator.endsWithpx,
   strokeOpacity: propValidator.isDecimal,
   onClick: PropTypes.func.isRequired
 } : {};
 
 ArrowIcon.defaultProps = {
+  additionalContainerClasses: [],
+  containerClasses: ["pointer", "w2", "ma2", "dim"],
   color: "white",
   disabled: false,
-  height: "40px",
-  width: "40px",
+  height: 40,
+  width: 40,
   strokeOpacity: "0.8",
   strokeWidth: "2px"
 };
