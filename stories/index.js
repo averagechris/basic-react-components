@@ -3,11 +3,13 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
 import Button from "../src/components/button.js";
+import CloseIcon from "../src/components/closeIcon.js";
 import Code from "../src/components/inlineCode.js";
 import Form from "../src/components/form/form.js";
 import FormInput from "../src/components/form/formInput.js";
 import Gallery from "../src/components/modal/gallery.js";
 import Modal from "../src/components/modal/modal.js";
+import TagItem from "../src/components/tagItem.js";
 
 storiesOf("Button", module).add("default", () => (
   <Button text="Click Me" onClick={action("click")} />
@@ -80,3 +82,34 @@ storiesOf("Gallery", module).add("basic", () => {
   ];
   return <Gallery images={images} handleClose={action("close")} />;
 });
+
+storiesOf("TagItem", module).add("defualt", () => (
+  <div className="flex justify-center pv3">
+    <TagItem label="?" value="thing" onClick={action("?-thing")} />
+    <TagItem
+      label="id"
+      value="stuff stuff stuff"
+      onClick={action("id-stuff-stuff-stuff")}
+    />
+    <TagItem
+      label="email"
+      value="super@email.com"
+      name="important"
+      onClick={action("email")}
+    />
+    <TagItem
+      additionalContainerClasses={["b blue"]}
+      additionalValueClasses={["dib"]}
+      name="someKey"
+      value="some deleteable property"
+      onClick={action("click-some-deleteable-property")}
+    >
+      <CloseIcon
+        onClick={action("x-some-deleteable-property")}
+        additionalContainerClasses={["dim z1"]}
+        color="red"
+        size="small"
+      />
+    </TagItem>
+  </div>
+));
