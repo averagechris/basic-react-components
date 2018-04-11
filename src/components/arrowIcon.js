@@ -57,6 +57,8 @@ const getPoints = (max, min, direction) => {
 };
 
 const ArrowIcon = ({
+  additionalContainerClasses,
+  containerClasses,
   color,
   direction,
   disabled,
@@ -70,7 +72,10 @@ const ArrowIcon = ({
   let points = getPoints(maxSize, 1, direction);
 
   return (
-    <div className="pointer w2 ma2 dim" onClick={onClick}>
+    <div
+      className={[...containerClasses, ...additionalContainerClasses].join(" ")}
+      onClick={onClick}
+    >
       <svg
         height={`${height}px`}
         width={`${width}px`}
@@ -95,6 +100,8 @@ const ArrowIcon = ({
 };
 
 ArrowIcon.propTypes = {
+  additionalContainerClasses: PropTypes.arrayOf(PropTypes.string),
+  containerClasses: PropTypes.arrayOf(PropTypes.string),
   color: PropTypes.oneOf(["white", "black"]),
   disabled: PropTypes.bool,
   direction: PropTypes.oneOf(["right", "left", "up", "down"]).isRequired,
@@ -106,6 +113,8 @@ ArrowIcon.propTypes = {
 };
 
 ArrowIcon.defaultProps = {
+  additionalContainerClasses: [],
+  containerClasses: ["pointer", "w2", "ma2", "dim"],
   color: "white",
   disabled: false,
   height: 40,
