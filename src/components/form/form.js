@@ -62,7 +62,7 @@ class Form extends Component {
               fieldName: child.props.name.toLowerCase(),
               newValue: e.target.value
             }),
-          value: this.state.form[child.props.name] || ""
+          value: this.state.form[child.props.name.toLowerCase()] || ""
         });
       } else {
         return child;
