@@ -78,14 +78,14 @@ var Form = function (_Component) {
       if (child.props.uncontrolled && formTypes.includes(child.type)) {
         return React.cloneElement(child, {
           ref: function ref(r) {
-            return _this3._setRef.bind(_this3, child.props.name, r)();
+            return _this3._setRef.bind(_this3, child.props.name.toLowerCase(), r)();
           }
         });
       } else if (formTypes.includes(child.type)) {
         return React.cloneElement(child, {
           onChange: function onChange(e) {
             return _this3.updateFormState({
-              fieldName: child.props.name,
+              fieldName: child.props.name.toLowerCase(),
               newValue: e.target.value
             });
           },

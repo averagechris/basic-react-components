@@ -53,13 +53,13 @@ class Form extends Component {
       const formTypes = [FormInput];
       if (child.props.uncontrolled && formTypes.includes(child.type)) {
         return React.cloneElement(child, {
-          ref: r => this._setRef.bind(this, child.props.name, r)()
+          ref: r => this._setRef.bind(this, child.props.name.toLowerCase(), r)()
         });
       } else if (formTypes.includes(child.type)) {
         return React.cloneElement(child, {
           onChange: e =>
             this.updateFormState({
-              fieldName: child.props.name,
+              fieldName: child.props.name.toLowerCase(),
               newValue: e.target.value
             }),
           value: this.state.form[child.props.name] || ""
