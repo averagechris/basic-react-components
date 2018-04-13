@@ -15,3 +15,18 @@ export const propValidator  = {
         }
     }
 }
+
+export const cssTypes = {
+    borderType: [
+        "dotted",
+        "dashed",
+        "solid",
+        "double",
+        "groove",
+        "ridge",
+        "inset",
+        "outset",
+        "none",
+        "hidden"
+    ]
+}

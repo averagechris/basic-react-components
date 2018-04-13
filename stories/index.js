@@ -10,6 +10,7 @@ import FormInput from "../src/components/form/formInput.js";
 import Gallery from "../src/components/modal/gallery.js";
 import Modal from "../src/components/modal/modal.js";
 import Select from "../src/components/form/select.js";
+import Spinner from "../src/components/spinner.js";
 import TagItem from "../src/components/tagItem.js";
 
 storiesOf("Button", module).add("default", () => (
@@ -124,3 +125,12 @@ storiesOf("Select", module).add("default", () => {
     </div>
   );
 });
+
+storiesOf("Spinner", module)
+  .add("default", () => {
+    return <Spinner />;
+  })
+  .add("red", () => <Spinner spinnerColor="red" />)
+  .add("big, green", () => <Spinner spinnerColor="green" size={5} />)
+  .add("small", () => <Spinner size={1} />)
+  .add("dashed", () => <Spinner borderType="dashed" borderWidth="9px" />);

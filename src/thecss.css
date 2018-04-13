@@ -1,0 +1,12 @@
+.spin {
+  animation: spinit 1s linear infinite;
+}
+
+.spin-ease-in {
+  animation: spinit 1s ease-in infinite;
+}
+
+@keyframes spinit {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
