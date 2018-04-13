@@ -9,3 +9,4 @@ export Code from "./components/inlineCode.js";
 export Modal from "./components/modal/modal.js";
 export Gallery, { GalleryViewer } from "./components/modal/gallery.js";
 export TagItem from "./components/tagItem.js";
+export Spinner from "./components/spinner.js";

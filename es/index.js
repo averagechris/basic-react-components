@@ -20,3 +20,5 @@ export { _Gallery as Gallery };
 export { GalleryViewer } from "./components/modal/gallery.js";
 import _TagItem from "./components/tagItem.js";
 export { _TagItem as TagItem };
+import _Spinner from "./components/spinner.js";
+export { _Spinner as Spinner };
