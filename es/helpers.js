@@ -15,3 +15,7 @@ export var propValidator = {
         }
     }
 };
+
+export var cssTypes = {
+    borderType: ["dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "none", "hidden"]
+};
