@@ -7,7 +7,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import ArrowIcon from "../arrowIcon.js";
+import ArrowIcon from "../icons/arrowIcon.js";
 
 var Select = function (_Component) {
   _inherits(Select, _Component);

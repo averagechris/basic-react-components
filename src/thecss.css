@@ -2,6 +2,14 @@
   animation: spinit 1s linear infinite;
 }
 
+.spin-once {
+  animation: spinit 1s linear 1;
+}
+
+.spin-once-fast {
+  animation: spinit .5s linear 1;
+}
+
 .spin-ease-in {
   animation: spinit 1s ease-in infinite;
 }
@@ -9,4 +17,30 @@
 @keyframes spinit {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.stroke-animate {
+  animation: draw-stroke 1s;
+}
+
+.stroke-animate-fast {
+  animation: draw-stroke .5s;
+}
+
+@keyframes draw-stroke {
+  0% {
+    stroke-dashoffset: 40;
+  }
+  30% {
+    stroke-dashoffset: 30;
+  }
+  60% {
+    stroke-dashoffset: 20;
+  }
+  90% {
+    stroke-dashoffset: 10;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }

@@ -1,26 +1,13 @@
-"use strict";
-
-exports.__esModule = true;
-exports.CloseIcon = undefined;
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = require("prop-types");
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _helpers = require("../helpers.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+import React from "react";
+import PropTypes from "prop-types";
+import { propValidator } from "../../helpers.js";
 
 var SIZE_MAP = {
   small: { min: "1", max: "7" },
   medium: { min: "1", max: "11" }
 };
 
-var CloseIcon = exports.CloseIcon = function CloseIcon(_ref) {
+export var CloseIcon = function CloseIcon(_ref) {
   var additionalContainerClasses = _ref.additionalContainerClasses,
       containerClasses = _ref.containerClasses,
       color = _ref.color,
@@ -28,13 +15,13 @@ var CloseIcon = exports.CloseIcon = function CloseIcon(_ref) {
       size = _ref.size,
       strokeOpacity = _ref.strokeOpacity,
       strokeWidth = _ref.strokeWidth;
-  return _react2.default.createElement(
+  return React.createElement(
     "span",
     {
       className: [].concat(containerClasses, additionalContainerClasses).join(" "),
       onClick: onClick
     },
-    _react2.default.createElement(
+    React.createElement(
       "svg",
       {
         height: String(Number(SIZE_MAP[size].max) + 1),
@@ -42,7 +29,7 @@ var CloseIcon = exports.CloseIcon = function CloseIcon(_ref) {
         version: "1.1",
         xmlns: "http://www.w3.org/svg"
       },
-      _react2.default.createElement("line", {
+      React.createElement("line", {
         x1: SIZE_MAP[size].min,
         y1: SIZE_MAP[size].max,
         x2: SIZE_MAP[size].max,
@@ -51,7 +38,7 @@ var CloseIcon = exports.CloseIcon = function CloseIcon(_ref) {
         strokeOpacity: strokeOpacity,
         strokeWidth: strokeWidth
       }),
-      _react2.default.createElement("line", {
+      React.createElement("line", {
         x1: SIZE_MAP[size].min,
         y1: SIZE_MAP[size].min,
         x2: SIZE_MAP[size].max,
@@ -65,16 +52,16 @@ var CloseIcon = exports.CloseIcon = function CloseIcon(_ref) {
 };
 
 CloseIcon.propTypes = process.env.NODE_ENV !== "production" ? {
-  additionalContainerClasses: _propTypes2.default.arrayOf(_propTypes2.default.string),
-  containerClasses: _propTypes2.default.arrayOf(_propTypes2.default.string),
-  onClick: _propTypes2.default.func.isRequired,
-  color: _propTypes2.default.string,
+  additionalContainerClasses: PropTypes.arrayOf(PropTypes.string),
+  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  onClick: PropTypes.func.isRequired,
+  color: PropTypes.string,
   size: function size(props, propName, componentName) {
     var p = props[propName];
     if (!Object.keys(SIZE_MAP).includes(p)) return new Error("Validation for prop " + propName + " failed in " + componentName);
   },
-  strokeOpacity: _helpers.propValidator.isDecimal,
-  strokeWidth: _helpers.propValidator.endsWithpx
+  strokeOpacity: propValidator.isDecimal,
+  strokeWidth: propValidator.endsWithpx
 } : {};
 
 CloseIcon.defaultProps = {
@@ -86,4 +73,4 @@ CloseIcon.defaultProps = {
   strokeOpacity: "0.7"
 };
 
-exports.default = CloseIcon;
+export default CloseIcon;

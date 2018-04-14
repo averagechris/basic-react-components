@@ -1,24 +1,12 @@
-"use strict";
-
-exports.__esModule = true;
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = require("prop-types");
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _helpers = require("../helpers.js");
-
-require("../thecss.css");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+import React from "react";
+import PropTypes from "prop-types";
+
+import { propValidator, cssTypes } from "../../helpers.js";
+import "../../thecss.css";
 
 var SIZE_MAP = {
   1: "3px",
@@ -38,7 +26,7 @@ var Spinner = function Spinner(_ref) {
       borderWidth = _ref.borderWidth,
       props = _objectWithoutProperties(_ref, ["additionalClassNames", "classNames", "size", "ringColor", "spinnerColor", "borderType", "borderWidth"]);
 
-  return _react2.default.createElement("div", _extends({
+  return React.createElement("div", _extends({
     className: [].concat(additionalClassNames, classNames).join(" ").concat(" h" + size + " w" + size),
     style: {
       border: (borderWidth || SIZE_MAP[size]) + " " + borderType + " " + ringColor,
@@ -56,13 +44,12 @@ Spinner.defaultProps = {
   borderType: "solid"
 };
 Spinner.propTypes = process.env.NODE_ENV !== "production" ? {
-  additionalClassNames: _propTypes2.default.arrayOf(_propTypes2.default.string),
-  classNames: _propTypes2.default.arrayOf(_propTypes2.default.string),
-  ringColor: _propTypes2.default.string,
-  spinnerColor: _propTypes2.default.string,
-  size: _propTypes2.default.oneOf([1, 2, 3, 4, 5]),
-  borderType: _propTypes2.default.oneOf(_helpers.cssTypes.borderType),
-  borderWidth: _helpers.propValidator.endsWithpx
+  additionalClassNames: PropTypes.arrayOf(PropTypes.string),
+  classNames: PropTypes.arrayOf(PropTypes.string),
+  ringColor: PropTypes.string,
+  spinnerColor: PropTypes.string,
+  size: PropTypes.oneOf([1, 2, 3, 4, 5]),
+  borderType: PropTypes.oneOf(cssTypes.borderType),
+  borderWidth: propValidator.endsWithpx
 } : {};
-exports.default = Spinner;
-module.exports = exports["default"];
+export default Spinner;

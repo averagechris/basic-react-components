@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { propValidator } from "../helpers.js";
+import { propValidator } from "../../helpers.js";
 
 const getPoints = (max, min, direction) => {
   let points_map = {

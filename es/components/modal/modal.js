@@ -9,7 +9,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import CloseIcon from "../closeIcon.js";
+import CloseIcon from "../icons/closeIcon.js";
 
 var Modal = function (_Component) {
   _inherits(Modal, _Component);

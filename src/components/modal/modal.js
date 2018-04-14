@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import CloseIcon from "../closeIcon.js";
+import CloseIcon from "../icons/closeIcon.js";
 
 class Modal extends Component {
   componentDidMount() {

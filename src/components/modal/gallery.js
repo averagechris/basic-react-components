@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import Modal from "./modal.js";
-import ArrowIcon from "../arrowIcon.js";
+import ArrowIcon from "../icons/arrowIcon.js";
 
 export class GalleryViewer extends Component {
   constructor() {

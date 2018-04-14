@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { propValidator, cssTypes } from "../helpers.js";
-import "../thecss.css";
+import { propValidator, cssTypes } from "../../helpers.js";
+import "../../thecss.css";
 
 const SIZE_MAP = {
   1: "3px",

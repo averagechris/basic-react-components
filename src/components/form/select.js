@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import ArrowIcon from "../arrowIcon.js";
+import ArrowIcon from "../icons/arrowIcon.js";
 
 class Select extends Component {
   render() {

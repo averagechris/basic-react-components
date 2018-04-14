@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { propValidator } from "../helpers.js";
+import { propValidator } from "../../helpers.js";
 
 const SIZE_MAP = {
   small: { min: "1", max: "7" },

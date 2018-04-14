@@ -3,15 +3,20 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
 import Button from "../src/components/button.js";
-import CloseIcon from "../src/components/closeIcon.js";
 import Code from "../src/components/inlineCode.js";
 import Form from "../src/components/form/form.js";
 import FormInput from "../src/components/form/formInput.js";
 import Gallery from "../src/components/modal/gallery.js";
 import Modal from "../src/components/modal/modal.js";
 import Select from "../src/components/form/select.js";
-import Spinner from "../src/components/spinner.js";
 import TagItem from "../src/components/tagItem.js";
+
+import CloseIcon from "../src/components/icons/closeIcon.js";
+import Spinner from "../src/components/icons/spinner.js";
+import OkayIcon from "../src/components/icons/okayIcon.js";
+import XIcon from "../src/components/icons/xIcon.js";
+import CloseIconNew from "../src/components/icons/newCloseIcon.js";
+import ErrorIcon from "../src/components/icons/errorIcon.js";
 
 storiesOf("Button", module).add("default", () => (
   <Button text="Click Me" onClick={action("click")} />
@@ -134,3 +139,54 @@ storiesOf("Spinner", module)
   .add("big, green", () => <Spinner spinnerColor="green" size={5} />)
   .add("small", () => <Spinner size={1} />)
   .add("dashed", () => <Spinner borderType="dashed" borderWidth="9px" />);
+
+storiesOf("okayIcon", module)
+  .add("default", () => (
+    <div className="center mt3 w6">
+      <OkayIcon />
+    </div>
+  ))
+  .add("animated, with click", () => (
+    <div className="center mt3 w6">
+      <OkayIcon animate={true} onClick={action("clicked")} />
+    </div>
+  ))
+  .add("blue, grow", () => (
+    <div className="center mt3 w4">
+      <OkayIcon
+        animate={true}
+        fill="#cdecff"
+        color="#357edd"
+        additionalContainerClasses={["grow"]}
+        strokeWidth=".4rem"
+        onClick={action("clicked")}
+      />
+    </div>
+  ));
+
+storiesOf("xIcon", module)
+  .add("default", () => <XIcon />)
+  .add("animated, red", () => (
+    <div>
+      <XIcon animate={true} color="red" />
+    </div>
+  ));
+
+storiesOf("newCloseIcon", module).add("animated grow", () => (
+  <div className="w5">
+    <CloseIconNew
+      animate={true}
+      onClick={action("close")}
+      additionalContainerClasses={["grow"]}
+      strokeWidth={3}
+    />
+  </div>
+));
+
+storiesOf("ErrorIcon", module)
+  .add("default", () => <ErrorIcon />)
+  .add("more", () => (
+    <div className="center mt3 w5">
+      <ErrorIcon animate={true} strokeOpacity="0.7" strokeWidth="4" />
+    </div>
+  ));
