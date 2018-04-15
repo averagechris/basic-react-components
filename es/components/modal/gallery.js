@@ -9,6 +9,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
 import Modal from "./modal.js";
 import ArrowIcon from "../icons/arrowIcon.js";
 
@@ -41,7 +42,7 @@ export var GalleryViewer = function (_Component) {
 
     return React.createElement(
       "div",
-      { className: "h-100 w-100 bg-black-80" },
+      { className: concatClassNames(["h-100", "w-100", "bg-black-80"]) },
       React.createElement("img", {
         src: imageSource,
         className: "h-100 w-100",

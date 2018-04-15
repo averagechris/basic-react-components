@@ -9,6 +9,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
 import CloseIcon from "../icons/closeIcon.js";
 
 var Modal = function (_Component) {
@@ -28,15 +29,15 @@ var Modal = function (_Component) {
     var _this2 = this;
 
     var _props = this.props,
-        additionalDimmerClasses = _props.additionalDimmerClasses,
-        additionalBodyClasses = _props.additionalBodyClasses,
+        addDimmerClasses = _props.addDimmerClasses,
+        addBodyClasses = _props.addBodyClasses,
         bodyClasses = _props.bodyClasses,
         dimmerClasses = _props.dimmerClasses,
         bodyColorClass = _props.bodyColorClass,
         dimmerColorClass = _props.dimmerColorClass,
         closeIconColor = _props.closeIconColor,
         handleClose = _props.handleClose,
-        props = _objectWithoutProperties(_props, ["additionalDimmerClasses", "additionalBodyClasses", "bodyClasses", "dimmerClasses", "bodyColorClass", "dimmerColorClass", "closeIconColor", "handleClose"]);
+        props = _objectWithoutProperties(_props, ["addDimmerClasses", "addBodyClasses", "bodyClasses", "dimmerClasses", "bodyColorClass", "dimmerColorClass", "closeIconColor", "handleClose"]);
 
     return React.createElement(
       "div",
@@ -45,7 +46,7 @@ var Modal = function (_Component) {
           return e.key === "Escape" && handleClose(e);
         },
         tabIndex: "0",
-        className: [].concat(dimmerClasses, [additionalDimmerClasses, dimmerColorClass]).join(" "),
+        className: concatClassNames(dimmerClasses, addDimmerClasses, dimmerColorClass),
         ref: function ref(div) {
           _this2.dimmerRef = div;
         }
@@ -53,7 +54,7 @@ var Modal = function (_Component) {
       React.createElement(
         "div",
         {
-          className: [].concat(bodyClasses, additionalBodyClasses, [bodyColorClass]).join(" ")
+          className: concatClassNames(bodyClasses, addBodyClasses, bodyColorClass)
         },
         React.createElement(CloseIcon, { onClick: handleClose, color: closeIconColor }),
         React.createElement(
@@ -69,8 +70,8 @@ var Modal = function (_Component) {
 }(Component);
 
 Modal.propTypes = process.env.NODE_ENV !== "production" ? {
-  additionalBodyClasses: PropTypes.arrayOf(PropTypes.string),
-  additionalDimmerClasses: PropTypes.arrayOf(PropTypes.string),
+  addBodyClasses: PropTypes.arrayOf(PropTypes.string),
+  addDimmerClasses: PropTypes.arrayOf(PropTypes.string),
   bodyClasses: PropTypes.arrayOf(PropTypes.string),
   dimmerClasses: PropTypes.arrayOf(PropTypes.string),
   dimmerColorClass: PropTypes.string,
@@ -78,8 +79,8 @@ Modal.propTypes = process.env.NODE_ENV !== "production" ? {
   handleClose: PropTypes.func.isRequired
 } : {};
 Modal.defaultProps = {
-  additionalBodyClasses: [],
-  additionalDimmerClasses: [],
+  addBodyClasses: [],
+  addDimmerClasses: [],
   bodyClasses: ["relative", "top-0", "top-1-m", "top-2-ns", "pa2", "mw7-m", "mw8-ns", "center", "br3"],
   dimmerClasses: ["fixed", "top-0", "left-0", "db", "z-1", "w-100", "h-100", "pt3", "bg-black-70", "overflow-container"],
   bodyColorClass: "bg-white",

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
 import "../../thecss.css";
 
 var XIcon = function XIcon(_ref) {
@@ -15,21 +16,21 @@ var XIcon = function XIcon(_ref) {
     "svg",
     {
       xmlns: "http://www.w3.org/svg",
-      className: [].concat(contClasses, addContClasses, [animate ? "spin-once-fast" : "", onClick ? "pointer" : ""]).join(" "),
+      className: concatClassNames(contClasses, addContClasses, animate ? "spin-once-fast" : "", onClick ? "pointer" : ""),
       viewBox: "0 0 100 100",
       onClick: onClick
     },
     React.createElement("path", {
-      className: animate ? "stroke-animate-fast" : "",
-      style: animate ? { strokeDasharray: 80 } : {},
+      className: concatClassNames(animate ? "stroke-animate-fast" : undefined),
+      style: animate ? { strokeDasharray: 80 } : undefined,
       stroke: color,
       strokeWidth: strokeWidth,
       fill: "none",
       d: "M30 30 l20 20 20 -20"
     }),
     React.createElement("path", {
-      className: animate && "stroke-animate-fast",
-      style: animate ? { strokeDasharray: 80 } : {},
+      className: concatClassNames(animate ? "stroke-animate-fast" : undefined),
+      style: animate ? { strokeDasharray: 80 } : undefined,
       stroke: color,
       strokeWidth: strokeWidth,
       fill: "none",

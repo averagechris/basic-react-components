@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { propValidator } from "../../helpers.js";
+import { concatClassNames, propValidator } from "../../helpers.js";
 
 var SIZE_MAP = {
   small: { min: "1", max: "7" },
@@ -18,7 +18,7 @@ export var CloseIcon = function CloseIcon(_ref) {
   return React.createElement(
     "span",
     {
-      className: [].concat(contClasses, addContClasses).join(" "),
+      className: concatClassNames(contClasses, addContClasses),
       onClick: onClick
     },
     React.createElement(

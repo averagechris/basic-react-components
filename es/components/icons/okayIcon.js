@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
 import "../../thecss.css";
 
 var OkayIcon = function OkayIcon(_ref) {
@@ -15,12 +16,12 @@ var OkayIcon = function OkayIcon(_ref) {
     "svg",
     {
       xmlns: "http://www.w3.org/svg",
-      className: [].concat(contClasses, addContClasses, [animate ? "spin-once-fast" : "", onClick ? "pointer" : ""]).join(" "),
+      className: concatClassNames(contClasses, addContClasses, animate ? "spin-once-fast" : "", onClick ? "pointer" : ""),
       viewBox: "0 0 100 100",
       onClick: onClick
     },
     React.createElement("circle", {
-      className: animate ? "stroke-animate-fast" : undefined,
+      className: concatClassNames(animate ? "stroke-animate-fast" : undefined),
       style: animate ? { strokeDasharray: 285 } : undefined,
       cx: "50",
       cy: "50",
@@ -30,7 +31,7 @@ var OkayIcon = function OkayIcon(_ref) {
       strokeWidth: strokeWidth
     }),
     React.createElement("path", {
-      className: animate ? "stroke-animate-fast" : undefined,
+      className: concatClassNames(animate ? "stroke-animate-fast" : undefined),
       style: animate ? { strokeDasharray: 35 } : undefined,
       stroke: color,
       strokeWidth: strokeWidth,
@@ -42,15 +43,15 @@ var OkayIcon = function OkayIcon(_ref) {
 
 OkayIcon.defaultProps = {
   addContClasses: [],
-  contClasses: [],
+  contClasses: ["w-100", "h-100"],
   animate: false,
   color: "#19a974",
   fill: "none",
   strokeWidth: 1
 };
 OkayIcon.propTypes = process.env.NODE_ENV !== "production" ? {
-  addContClasses: [],
-  contClasses: ["w-100", "h-100"],
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,

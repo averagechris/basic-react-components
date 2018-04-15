@@ -5,6 +5,8 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import React from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../helpers.js";
+
 var TagItem = function TagItem(_ref) {
   var addContClasses = _ref.addContClasses,
       addLabelClasses = _ref.addLabelClasses,
@@ -22,14 +24,14 @@ var TagItem = function TagItem(_ref) {
 
   return React.createElement(
     "div",
-    _extends({ className: [].concat(contClasses, addContClasses).join(" ") }, props),
+    _extends({ className: concatClassNames(contClasses, addContClasses) }, props),
     label && React.createElement(
       "span",
       {
         onClick: function onClick() {
           return name ? _onClick(name) : _onClick();
         },
-        className: [].concat(labelClasses, addLabelClasses).join(" ")
+        className: concatClassNames(labelClasses, addLabelClasses)
       },
       label,
       separator && " |"
@@ -41,7 +43,7 @@ var TagItem = function TagItem(_ref) {
         onClick: function onClick() {
           return name ? _onClick(name) : _onClick();
         },
-        className: [].concat(valueClasses, addValueClasses).join(" ")
+        className: concatClassNames(valueClasses, addValueClasses)
       },
       value
     )

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
 import "../../thecss.css";
 
 var ErrorIcon = function ErrorIcon(_ref) {
@@ -16,12 +17,12 @@ var ErrorIcon = function ErrorIcon(_ref) {
     "svg",
     {
       xmlns: "http://www.w3.org/svg",
-      className: [].concat(contClasses, addContClasses, [animate ? "spin-once-fast" : "", onClick ? "pointer" : ""]).join(" "),
+      className: concatClassNames(contClasses, addContClasses, animate ? "spin-once-fast" : "", onClick ? "pointer" : ""),
       viewBox: "0 0 100 100",
       onClick: onClick
     },
     React.createElement("circle", {
-      className: animate ? "stroke-animate-fast" : "",
+      className: concatClassNames(animate ? "stroke-animate-fast" : undefined),
       style: animate ? { strokeDasharray: 285 } : {},
       cx: "50",
       cy: "50",
@@ -32,7 +33,7 @@ var ErrorIcon = function ErrorIcon(_ref) {
       strokeOpacity: strokeOpacity
     }),
     React.createElement("polygon", {
-      className: animate ? "stroke-animate-fast" : undefined,
+      className: concatClassNames(animate ? "stroke-animate-fast" : undefined),
       stroke: color,
       strokeWidth: strokeWidth,
       strokeOpacity: strokeOpacity,
@@ -74,7 +75,7 @@ ErrorIcon.propTypes = process.env.NODE_ENV !== "production" ? {
   color: PropTypes.string,
   fill: PropTypes.string,
   strokeOpacity: PropTypes.string,
-  strokeWidth: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+  strokeWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClick: PropTypes.func
 } : {};
 

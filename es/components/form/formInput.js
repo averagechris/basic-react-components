@@ -11,6 +11,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
+
 var FormInput = function (_Component) {
   _inherits(FormInput, _Component);
 
@@ -55,10 +57,13 @@ var FormInput = function (_Component) {
 
     return React.createElement(
       "div",
-      { className: contClasses.join(" ") },
+      { className: concatClassNames(contClasses) },
       React.createElement(
         "label",
-        { htmlFor: id, className: [errorColor].concat(labelClasses).join(" ") },
+        {
+          htmlFor: id,
+          className: concatClassNames.apply(undefined, [errorColor].concat(labelClasses))
+        },
         name,
         required ? "*" : ""
       ),

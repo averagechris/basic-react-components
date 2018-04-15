@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import "../../thecss.css";
+import { concatClassNames } from "../../helpers.js";
 
 var InfoIcon = function InfoIcon(_ref) {
   var addContClasses = _ref.addContClasses,
@@ -16,12 +17,12 @@ var InfoIcon = function InfoIcon(_ref) {
     "svg",
     {
       xmlns: "http://www.w3.org/svg",
-      className: [].concat(contClasses, addContClasses, [animate ? "spin-once-fast" : "", onClick ? "pointer" : ""]).join(" "),
+      className: concatClassNames(contClasses, addContClasses, animate ? "spin-once-fast" : undefined, onClick ? "pointer" : undefined),
       viewBox: "0 0 100 100",
       onClick: onClick
     },
     React.createElement("circle", {
-      className: animate ? "stroke-animate-fast" : "",
+      className: concatClassNames(animate ? "stroke-animate-fast" : undefined),
       style: animate ? { strokeDasharray: 285 } : {},
       cx: "50",
       cy: "50",

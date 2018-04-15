@@ -9,6 +9,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
 import FormInput from "./formInput.js";
 
 var Form = function (_Component) {
@@ -98,12 +99,21 @@ var Form = function (_Component) {
   };
 
   Form.prototype.render = function render() {
+    var _props = this.props,
+        addContClasses = _props.addContClasses,
+        contClasses = _props.contClasses,
+        formClasses = _props.formClasses,
+        addFormClasses = _props.addFormClasses;
+
     return React.createElement(
       "div",
-      { className: this.props.contClasses.join(" ") },
+      { className: concatClassNames(contClasses, addContClasses) },
       React.createElement(
         "form",
-        { className: "pa1 ph3-m ph4-ns", onSubmit: this.handleSubmit },
+        {
+          className: concatClassNames(formClasses, addFormClasses),
+          onSubmit: this.handleSubmit
+        },
         this.renderChildren()
       )
     );
@@ -114,14 +124,20 @@ var Form = function (_Component) {
 
 Form.propTypes = process.env.NODE_ENV !== "production" ? {
   applyToChanges: PropTypes.arrayOf(PropTypes.func),
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
   contClasses: PropTypes.arrayOf(PropTypes.string),
+  formClasses: PropTypes.arrayOf(PropTypes.string),
+  addFormClasses: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func,
   onSubmit: PropTypes.func.isRequired
 } : {};
 
 Form.defaultProps = {
-  applyToChanges: [function () {}],
-  contClasses: []
+  addContClasses: [],
+  contClasses: [],
+  addFormClasses: [],
+  formClasses: ["pa1", "ph3-m", "ph4-ns"],
+  applyToChanges: [function () {}]
 };
 
 export default Form;

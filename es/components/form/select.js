@@ -7,6 +7,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
 import ArrowIcon from "../icons/arrowIcon.js";
 
 var Select = function (_Component) {
@@ -32,11 +33,11 @@ var Select = function (_Component) {
 
     return React.createElement(
       "div",
-      { className: [].concat(contClasses, addContClasses).join(" ") },
+      { className: concatClassNames(contClasses, addContClasses) },
       React.createElement(
         "select",
         {
-          className: [].concat(selectClasses, addSelectClasses).join(" "),
+          className: concatClassNames(selectClasses, addSelectClasses),
           ref: function ref(s) {
             return _this2.selectRef = s;
           }
@@ -45,7 +46,7 @@ var Select = function (_Component) {
           return React.createElement(
             "option",
             {
-              className: [].concat(optionClasses, addOptionClasses).join(" "),
+              className: concatClassNames(optionClasses, addOptionClasses),
               key: "Select-option-" + o.text + "-" + i
             },
             o.text
@@ -53,7 +54,7 @@ var Select = function (_Component) {
         })
       ),
       React.createElement(ArrowIcon, {
-        contClasses: ["mt2 mh2"],
+        contClasses: ["mt2", "mh2"],
         color: "black",
         direction: "down",
         height: 18,

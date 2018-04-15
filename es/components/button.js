@@ -5,28 +5,30 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import React from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../helpers.js";
+
 var Button = function Button(_ref) {
-  var additionalClasses = _ref.additionalClasses,
-      classList = _ref.classList,
+  var addClasses = _ref.addClasses,
+      classes = _ref.classes,
       text = _ref.text,
-      props = _objectWithoutProperties(_ref, ["additionalClasses", "classList", "text"]);
+      props = _objectWithoutProperties(_ref, ["addClasses", "classes", "text"]);
 
   return React.createElement(
     "button",
-    _extends({ className: [].concat(classList, additionalClasses).join(" ") }, props),
+    _extends({ className: concatClassNames(classes, addClasses) }, props),
     text
   );
 };
 
 Button.propTypes = process.env.NODE_ENV !== "production" ? {
-  additionalClasses: PropTypes.arrayOf(PropTypes.string),
-  classList: PropTypes.arrayOf(PropTypes.string),
+  addClasses: PropTypes.arrayOf(PropTypes.string),
+  classes: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func.isRequired,
   text: PropTypes.node.isRequired
 } : {};
 
 Button.defaultProps = {
-  additionalClasses: [],
-  classList: ["pv2", "ph3", "f5", "br2", "white", "bg-blue", "pointer"]
+  addClasses: [],
+  classes: ["pv2", "ph3", "f5", "br2", "white", "bg-blue", "pointer"]
 };
 export default Button;

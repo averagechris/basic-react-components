@@ -3,7 +3,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 import React from "react";
 import PropTypes from "prop-types";
 
-import { propValidator } from "../../helpers.js";
+import { propValidator, concatClassNames } from "../../helpers.js";
 
 var getPoints = function getPoints(max, min, direction) {
   var points_map = {
@@ -64,7 +64,7 @@ var ArrowIcon = function ArrowIcon(_ref) {
   return React.createElement(
     "div",
     {
-      className: [].concat(contClasses, addContClasses).join(" "),
+      className: concatClassNames(contClasses, addContClasses),
       onClick: onClick
     },
     React.createElement(
