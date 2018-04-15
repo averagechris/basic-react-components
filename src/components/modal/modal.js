@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
 import CloseIcon from "../icons/closeIcon.js";
 
 class Modal extends Component {
@@ -10,8 +11,8 @@ class Modal extends Component {
 
   render() {
     let {
-      additionalDimmerClasses,
-      additionalBodyClasses,
+      addDimmerClasses,
+      addBodyClasses,
       bodyClasses,
       dimmerClasses,
       bodyColorClass,
@@ -25,21 +26,21 @@ class Modal extends Component {
       <div
         onKeyDown={e => e.key === "Escape" && handleClose(e)}
         tabIndex="0"
-        className={[
-          ...dimmerClasses,
-          additionalDimmerClasses,
+        className={concatClassNames(
+          dimmerClasses,
+          addDimmerClasses,
           dimmerColorClass
-        ].join(" ")}
+        )}
         ref={div => {
           this.dimmerRef = div;
         }}
       >
         <div
-          className={[
-            ...bodyClasses,
-            ...additionalBodyClasses,
+          className={concatClassNames(
+            bodyClasses,
+            addBodyClasses,
             bodyColorClass
-          ].join(" ")}
+          )}
         >
           <CloseIcon onClick={handleClose} color={closeIconColor} />
           <div className="center w-90 ha mt3">{props.children}</div>
@@ -50,8 +51,8 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  additionalBodyClasses: PropTypes.arrayOf(PropTypes.string),
-  additionalDimmerClasses: PropTypes.arrayOf(PropTypes.string),
+  addBodyClasses: PropTypes.arrayOf(PropTypes.string),
+  addDimmerClasses: PropTypes.arrayOf(PropTypes.string),
   bodyClasses: PropTypes.arrayOf(PropTypes.string),
   dimmerClasses: PropTypes.arrayOf(PropTypes.string),
   dimmerColorClass: PropTypes.string,
@@ -59,8 +60,8 @@ Modal.propTypes = {
   handleClose: PropTypes.func.isRequired
 };
 Modal.defaultProps = {
-  additionalBodyClasses: [],
-  additionalDimmerClasses: [],
+  addBodyClasses: [],
+  addDimmerClasses: [],
   bodyClasses: [
     "relative",
     "top-0",

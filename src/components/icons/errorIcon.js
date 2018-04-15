@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
 import "../../thecss.css";
 
 const ErrorIcon = ({
@@ -15,17 +16,17 @@ const ErrorIcon = ({
 }) => (
   <svg
     xmlns="http://www.w3.org/svg"
-    className={[
-      ...contClasses,
-      ...addContClasses,
+    className={concatClassNames(
+      contClasses,
+      addContClasses,
       animate ? "spin-once-fast" : "",
       onClick ? "pointer" : ""
-    ].join(" ")}
+    )}
     viewBox="0 0 100 100"
     onClick={onClick}
   >
     <circle
-      className={animate ? "stroke-animate-fast" : ""}
+      className={concatClassNames(animate ? "stroke-animate-fast" : undefined)}
       style={animate ? { strokeDasharray: 285 } : {}}
       cx="50"
       cy="50"
@@ -37,7 +38,7 @@ const ErrorIcon = ({
     />
 
     <polygon
-      className={animate ? "stroke-animate-fast" : undefined}
+      className={concatClassNames(animate ? "stroke-animate-fast" : undefined)}
       stroke={color}
       strokeWidth={strokeWidth}
       strokeOpacity={strokeOpacity}
@@ -77,7 +78,7 @@ ErrorIcon.propTypes = {
   color: PropTypes.string,
   fill: PropTypes.string,
   strokeOpacity: PropTypes.string,
-  strokeWidth: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+  strokeWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClick: PropTypes.func
 };
 

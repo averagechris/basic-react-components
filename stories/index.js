@@ -109,7 +109,7 @@ storiesOf("TagItem", module).add("defualt", () => (
     />
     <TagItem
       addContClasses={["b blue"]}
-      additionalValueClasses={["dib"]}
+      addValueClasses={["dib"]}
       name="someKey"
       value="some deleteable property"
       onClick={action("click-some-deleteable-property")}
@@ -134,8 +134,32 @@ storiesOf("Select", module).add("default", () => {
   );
 });
 
-storiesOf("MessageBanner", module).add("default", () => {
-  return <MessageBanner>hello</MessageBanner>;
+storiesOf("MessageBanner", module)
+  .add("default", () => {
+    return <MessageBanner>hello</MessageBanner>;
+  })
+  .add("bottom fixed, basic notification", () => (
+    <div className="w-100 fixed bottom-0 sans-serif">
+      <MessageBanner
+        message="This app is a Progressive Web App and works offline!"
+        addContClasses={["ma1", "center", "tc"]}
+      />
+    </div>
+  ));
+
+storiesOf("NotificationBanner", module).add("dismissable information", () => {
+  return (
+    <div className="f4 sans-serif">
+      <MessageBanner
+        bgColorClass="bg-white-80"
+        fontColorClass="green"
+        addContClasses={["center", "tc", "ba", "br2"]}
+      >
+        <CloseIconNew addContClasses={["h2"]} />
+        Your post has been submitted.
+      </MessageBanner>
+    </div>
+  );
 });
 
 storiesOf("Spinner", module)
@@ -145,7 +169,7 @@ storiesOf("Spinner", module)
   .add("red", () => <Spinner spinnerColor="red" />)
   .add("big, green", () => <Spinner spinnerColor="green" size={5} />)
   .add("small", () => <Spinner size={1} />)
-  .add("dashed", () => <Spinner borderType="dashed" borderWidth="9px" />);
+  .add("dashed", () => <Spinner borderType="dashed" />);
 
 storiesOf("okayIcon", module)
   .add("default", () => (

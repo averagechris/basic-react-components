@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
 import "../../thecss.css";
 
 const OkayIcon = ({
@@ -14,17 +15,17 @@ const OkayIcon = ({
 }) => (
   <svg
     xmlns="http://www.w3.org/svg"
-    className={[
-      ...contClasses,
-      ...addContClasses,
+    className={concatClassNames(
+      contClasses,
+      addContClasses,
       animate ? "spin-once-fast" : "",
       onClick ? "pointer" : ""
-    ].join(" ")}
+    )}
     viewBox="0 0 100 100"
     onClick={onClick}
   >
     <circle
-      className={animate ? "stroke-animate-fast" : undefined}
+      className={concatClassNames(animate ? "stroke-animate-fast" : undefined)}
       style={animate ? { strokeDasharray: 285 } : undefined}
       cx="50"
       cy="50"
@@ -34,7 +35,7 @@ const OkayIcon = ({
       strokeWidth={strokeWidth}
     />
     <path
-      className={animate ? "stroke-animate-fast" : undefined}
+      className={concatClassNames(animate ? "stroke-animate-fast" : undefined)}
       style={animate ? { strokeDasharray: 35 } : undefined}
       stroke={color}
       strokeWidth={strokeWidth}
@@ -46,15 +47,15 @@ const OkayIcon = ({
 
 OkayIcon.defaultProps = {
   addContClasses: [],
-  contClasses: [],
+  contClasses: ["w-100", "h-100"],
   animate: false,
   color: "#19a974",
   fill: "none",
   strokeWidth: 1
 };
 OkayIcon.propTypes = {
-  addContClasses: [],
-  contClasses: ["w-100", "h-100"],
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,

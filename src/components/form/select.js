@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
 import ArrowIcon from "../icons/arrowIcon.js";
 
 class Select extends Component {
@@ -15,14 +16,14 @@ class Select extends Component {
       options
     } = this.props;
     return (
-      <div className={[...contClasses, ...addContClasses].join(" ")}>
+      <div className={concatClassNames(contClasses, addContClasses)}>
         <select
-          className={[...selectClasses, ...addSelectClasses].join(" ")}
+          className={concatClassNames(selectClasses, addSelectClasses)}
           ref={s => (this.selectRef = s)}
         >
           {options.map((o, i) => (
             <option
-              className={[...optionClasses, ...addOptionClasses].join(" ")}
+              className={concatClassNames(optionClasses, addOptionClasses)}
               key={`Select-option-${o.text}-${i}`}
             >
               {o.text}
@@ -30,7 +31,7 @@ class Select extends Component {
           ))}
         </select>
         <ArrowIcon
-          contClasses={["mt2 mh2"]}
+          contClasses={["mt2", "mh2"]}
           color="black"
           direction="down"
           height={18}

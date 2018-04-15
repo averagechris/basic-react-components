@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { propValidator } from "../../helpers.js";
+import { propValidator, concatClassNames } from "../../helpers.js";
 
 const getPoints = (max, min, direction) => {
   let points_map = {
@@ -73,7 +73,7 @@ const ArrowIcon = ({
 
   return (
     <div
-      className={[...contClasses, ...addContClasses].join(" ")}
+      className={concatClassNames(contClasses, addContClasses)}
       onClick={onClick}
     >
       <svg

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
+
 class FormInput extends Component {
   render() {
     let {
@@ -35,8 +37,11 @@ class FormInput extends Component {
     }
 
     return (
-      <div className={contClasses.join(" ")}>
-        <label htmlFor={id} className={[errorColor, ...labelClasses].join(" ")}>
+      <div className={concatClassNames(contClasses)}>
+        <label
+          htmlFor={id}
+          className={concatClassNames(errorColor, ...labelClasses)}
+        >
           {name}
           {required ? "*" : ""}
         </label>

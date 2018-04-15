@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
 import FormInput from "./formInput.js";
 
 class Form extends Component {
@@ -70,9 +71,18 @@ class Form extends Component {
     });
   }
   render() {
+    let {
+      addContClasses,
+      contClasses,
+      formClasses,
+      addFormClasses
+    } = this.props;
     return (
-      <div className={this.props.contClasses.join(" ")}>
-        <form className="pa1 ph3-m ph4-ns" onSubmit={this.handleSubmit}>
+      <div className={concatClassNames(contClasses, addContClasses)}>
+        <form
+          className={concatClassNames(formClasses, addFormClasses)}
+          onSubmit={this.handleSubmit}
+        >
           {this.renderChildren()}
         </form>
       </div>
@@ -82,14 +92,20 @@ class Form extends Component {
 
 Form.propTypes = {
   applyToChanges: PropTypes.arrayOf(PropTypes.func),
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
   contClasses: PropTypes.arrayOf(PropTypes.string),
+  formClasses: PropTypes.arrayOf(PropTypes.string),
+  addFormClasses: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func,
   onSubmit: PropTypes.func.isRequired
 };
 
 Form.defaultProps = {
-  applyToChanges: [() => {}],
-  contClasses: []
+  addContClasses: [],
+  contClasses: [],
+  addFormClasses: [],
+  formClasses: ["pa1", "ph3-m", "ph4-ns"],
+  applyToChanges: [() => {}]
 };
 
 export default Form;

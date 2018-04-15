@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import "../../thecss.css";
 
+import { concatClassNames } from "../../helpers.js";
 import XIcon from "./xIcon.js";
 
 const CloseIconNew = ({
@@ -16,18 +17,18 @@ const CloseIconNew = ({
 }) => (
   <svg
     xmlns="http://www.w3.org/svg"
-    className={[
-      ...contClasses,
-      ...addContClasses,
-      animate ? "spin-once-fast" : "",
-      onClick ? "pointer" : ""
-    ].join(" ")}
+    className={concatClassNames(
+      contClasses,
+      addContClasses,
+      animate ? "spin-once-fast" : undefined,
+      onClick ? "pointer" : undefined
+    )}
     viewBox="0 0 100 100"
     onClick={onClick}
   >
     <circle
-      className={animate ? "stroke-animate-fast" : ""}
-      style={animate ? { strokeDasharray: 285 } : {}}
+      className={concatClassNames(animate ? "stroke-animate-fast" : undefined)}
+      style={animate ? { strokeDasharray: 285 } : undefined}
       cx="50"
       cy="50"
       r="45"

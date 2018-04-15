@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../helpers.js";
+
 export const TagItem = ({
   addContClasses,
   addLabelClasses,
@@ -16,11 +18,11 @@ export const TagItem = ({
   children,
   ...props
 }) => (
-  <div className={[...contClasses, ...addContClasses].join(" ")} {...props}>
+  <div className={concatClassNames(contClasses, addContClasses)} {...props}>
     {label && (
       <span
         onClick={() => (name ? onClick(name) : onClick())}
-        className={[...labelClasses, ...addLabelClasses].join(" ")}
+        className={concatClassNames(labelClasses, addLabelClasses)}
       >
         {label}
         {separator && " |"}
@@ -29,7 +31,7 @@ export const TagItem = ({
     {children}
     <span
       onClick={() => (name ? onClick(name) : onClick())}
-      className={[...valueClasses, ...addValueClasses].join(" ")}
+      className={concatClassNames(valueClasses, addValueClasses)}
     >
       {value}
     </span>

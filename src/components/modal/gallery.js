@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import { concatClassNames } from "../../helpers.js";
 import Modal from "./modal.js";
 import ArrowIcon from "../icons/arrowIcon.js";
 
@@ -20,7 +21,7 @@ export class GalleryViewer extends Component {
   renderFullScreenImage() {
     let { imageSource, changeImage } = this.props;
     return (
-      <div className="h-100 w-100 bg-black-80">
+      <div className={concatClassNames(["h-100", "w-100", "bg-black-80"])}>
         <img
           src={imageSource}
           className="h-100 w-100"

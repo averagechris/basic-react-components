@@ -1,21 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ additionalClasses, classList, text, ...props }) => (
-  <button className={[...classList, ...additionalClasses].join(" ")} {...props}>
+import { concatClassNames } from "../helpers.js";
+
+const Button = ({ addClasses, classes, text, ...props }) => (
+  <button className={concatClassNames(classes, addClasses)} {...props}>
     {text}
   </button>
 );
 
 Button.propTypes = {
-  additionalClasses: PropTypes.arrayOf(PropTypes.string),
-  classList: PropTypes.arrayOf(PropTypes.string),
+  addClasses: PropTypes.arrayOf(PropTypes.string),
+  classes: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func.isRequired,
   text: PropTypes.node.isRequired
 };
 
 Button.defaultProps = {
-  additionalClasses: [],
-  classList: ["pv2", "ph3", "f5", "br2", "white", "bg-blue", "pointer"]
+  addClasses: [],
+  classes: ["pv2", "ph3", "f5", "br2", "white", "bg-blue", "pointer"]
 };
 export default Button;
