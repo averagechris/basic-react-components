@@ -1,5 +1,7 @@
 import React from "react";
 
+import _css from "./thecss.css";
+export { _css as css };
 import _Button from "./components/button.js";
 export { _Button as Button };
 import _Form from "./components/form/form.js";

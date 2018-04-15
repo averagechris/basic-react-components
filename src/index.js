@@ -1,5 +1,7 @@
 import React from "react";
 
+export css from "./thecss.css";
+
 export Button from "./components/button.js";
 export Form from "./components/form/form.js";
 export FormInput from "./components/form/formInput.js";
