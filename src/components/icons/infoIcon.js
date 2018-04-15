@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 
 import "../../thecss.css";
 
-const XIcon = ({
+const InfoIcon = ({
   addContClasses,
   contClasses,
   animate,
   color,
   fill,
+  strokeOpacity,
   strokeWidth,
   onClick
 }) => (
@@ -23,40 +24,51 @@ const XIcon = ({
     viewBox="0 0 100 100"
     onClick={onClick}
   >
-    <path
+    <circle
       className={animate ? "stroke-animate-fast" : ""}
-      style={animate ? { strokeDasharray: 80 } : {}}
+      style={animate ? { strokeDasharray: 285 } : {}}
+      cx="50"
+      cy="50"
+      r="45"
+      fill={fill}
       stroke={color}
       strokeWidth={strokeWidth}
-      fill="none"
-      d="M30 30 l20 20 20 -20"
     />
-    <path
-      className={animate && "stroke-animate-fast"}
-      style={animate ? { strokeDasharray: 80 } : {}}
-      stroke={color}
-      strokeWidth={strokeWidth}
-      fill="none"
-      d="M30 70 l20 -20 20 20"
-    />
+
+    <text
+      style={{
+        cursor: "default",
+        userSelect: "none",
+        MozUserSelect: "none"
+      }}
+      fillOpacity={strokeOpacity}
+      fill={color}
+      x="44"
+      y="65"
+      fontSize="45"
+    >
+      i
+    </text>
   </svg>
 );
 
-XIcon.defaultProps = {
+InfoIcon.defaultProps = {
   addContClasses: [],
   contClasses: ["w-100", "h-100"],
   animate: false,
   color: "black",
   fill: "none",
-  strokeWidth: 1
+  strokeWidth: 1,
+  strokeOpacity: "1"
 };
-XIcon.propTypes = {
+InfoIcon.propTypes = {
   addContClasses: PropTypes.arrayOf(PropTypes.string),
   contClasses: PropTypes.arrayOf(PropTypes.string),
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,
-  onClick: PropTypes.func
+  strokeOpacity: PropTypes.string,
+  onClick: PropTypes.func.isRequired
 };
 
-export default XIcon;
+export default InfoIcon;

@@ -47,8 +47,8 @@ var getPoints = function getPoints(max, min, direction) {
 };
 
 var ArrowIcon = function ArrowIcon(_ref) {
-  var additionalContainerClasses = _ref.additionalContainerClasses,
-      containerClasses = _ref.containerClasses,
+  var addContClasses = _ref.addContClasses,
+      contClasses = _ref.contClasses,
       color = _ref.color,
       direction = _ref.direction,
       disabled = _ref.disabled,
@@ -64,7 +64,7 @@ var ArrowIcon = function ArrowIcon(_ref) {
   return React.createElement(
     "div",
     {
-      className: [].concat(containerClasses, additionalContainerClasses).join(" "),
+      className: [].concat(contClasses, addContClasses).join(" "),
       onClick: onClick
     },
     React.createElement(
@@ -90,8 +90,8 @@ var ArrowIcon = function ArrowIcon(_ref) {
 };
 
 ArrowIcon.propTypes = process.env.NODE_ENV !== "production" ? {
-  additionalContainerClasses: PropTypes.arrayOf(PropTypes.string),
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   color: PropTypes.oneOf(["white", "black"]),
   disabled: PropTypes.bool,
   direction: PropTypes.oneOf(["right", "left", "up", "down"]).isRequired,
@@ -103,8 +103,8 @@ ArrowIcon.propTypes = process.env.NODE_ENV !== "production" ? {
 } : {};
 
 ArrowIcon.defaultProps = {
-  additionalContainerClasses: [],
-  containerClasses: ["pointer", "w2", "ma2", "dim"],
+  addContClasses: [],
+  contClasses: ["pointer", "w2", "ma2", "dim"],
   color: "white",
   disabled: false,
   height: 40,

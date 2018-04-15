@@ -8,8 +8,8 @@ var SIZE_MAP = {
 };
 
 export var CloseIcon = function CloseIcon(_ref) {
-  var additionalContainerClasses = _ref.additionalContainerClasses,
-      containerClasses = _ref.containerClasses,
+  var addContClasses = _ref.addContClasses,
+      contClasses = _ref.contClasses,
       color = _ref.color,
       onClick = _ref.onClick,
       size = _ref.size,
@@ -18,7 +18,7 @@ export var CloseIcon = function CloseIcon(_ref) {
   return React.createElement(
     "span",
     {
-      className: [].concat(containerClasses, additionalContainerClasses).join(" "),
+      className: [].concat(contClasses, addContClasses).join(" "),
       onClick: onClick
     },
     React.createElement(
@@ -52,8 +52,8 @@ export var CloseIcon = function CloseIcon(_ref) {
 };
 
 CloseIcon.propTypes = process.env.NODE_ENV !== "production" ? {
-  additionalContainerClasses: PropTypes.arrayOf(PropTypes.string),
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func.isRequired,
   color: PropTypes.string,
   size: function size(props, propName, componentName) {
@@ -65,8 +65,8 @@ CloseIcon.propTypes = process.env.NODE_ENV !== "production" ? {
 } : {};
 
 CloseIcon.defaultProps = {
-  additionalContainerClasses: [],
-  containerClasses: ["pointer", "w1"],
+  addContClasses: [],
+  contClasses: ["pointer", "w1"],
   color: "black",
   size: "medium",
   strokeWidth: "2px",

@@ -71,7 +71,7 @@ class Form extends Component {
   }
   render() {
     return (
-      <div className={this.props.containerClasses.join(" ")}>
+      <div className={this.props.contClasses.join(" ")}>
         <form className="pa1 ph3-m ph4-ns" onSubmit={this.handleSubmit}>
           {this.renderChildren()}
         </form>
@@ -82,14 +82,14 @@ class Form extends Component {
 
 Form.propTypes = {
   applyToChanges: PropTypes.arrayOf(PropTypes.func),
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func,
   onSubmit: PropTypes.func.isRequired
 };
 
 Form.defaultProps = {
   applyToChanges: [() => {}],
-  containerClasses: []
+  contClasses: []
 };
 
 export default Form;

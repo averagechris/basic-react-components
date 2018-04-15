@@ -6,8 +6,8 @@ import "../../thecss.css";
 import XIcon from "./xIcon.js";
 
 const CloseIconNew = ({
-  additionalContainerClasses,
-  containerClasses,
+  addContClasses,
+  contClasses,
   animate,
   color,
   fill,
@@ -17,8 +17,8 @@ const CloseIconNew = ({
   <svg
     xmlns="http://www.w3.org/svg"
     className={[
-      ...containerClasses,
-      ...additionalContainerClasses,
+      ...contClasses,
+      ...addContClasses,
       animate ? "spin-once-fast" : "",
       onClick ? "pointer" : ""
     ].join(" ")}
@@ -40,16 +40,16 @@ const CloseIconNew = ({
 );
 
 CloseIconNew.defaultProps = {
-  additionalContainerClasses: [],
-  containerClasses: ["w-100", "h-100"],
+  addContClasses: [],
+  contClasses: ["w-100", "h-100"],
   animate: false,
   color: "black",
   fill: "none",
   strokeWidth: 1
 };
 CloseIconNew.propTypes = {
-  additionalContainerClasses: PropTypes.arrayOf(PropTypes.string),
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,

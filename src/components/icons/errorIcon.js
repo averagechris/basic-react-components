@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import "../../thecss.css";
 
 const ErrorIcon = ({
-  additionalContainerClasses,
-  containerClasses,
+  addContClasses,
+  contClasses,
   animate,
   color,
   fill,
@@ -16,8 +16,8 @@ const ErrorIcon = ({
   <svg
     xmlns="http://www.w3.org/svg"
     className={[
-      ...containerClasses,
-      ...additionalContainerClasses,
+      ...contClasses,
+      ...addContClasses,
       animate ? "spin-once-fast" : "",
       onClick ? "pointer" : ""
     ].join(" ")}
@@ -62,8 +62,8 @@ const ErrorIcon = ({
 );
 
 ErrorIcon.defaultProps = {
-  additionalContainerClasses: [],
-  containerClasses: ["w-100", "h-100"],
+  addContClasses: [],
+  contClasses: ["w-100", "h-100"],
   animate: false,
   color: "#e7040f",
   fill: "none",
@@ -71,13 +71,13 @@ ErrorIcon.defaultProps = {
   strokeWidth: 1
 };
 ErrorIcon.propTypes = {
-  additionalContainerClasses: PropTypes.arrayOf(PropTypes.string),
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,
   strokeOpacity: PropTypes.string,
-  strokeWidth: PropTypes.oneOf(PropTypes.string, PropTypes.number),
+  strokeWidth: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
   onClick: PropTypes.func
 };
 

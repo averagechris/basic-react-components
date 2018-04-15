@@ -11,7 +11,10 @@ import Modal from "../src/components/modal/modal.js";
 import Select from "../src/components/form/select.js";
 import TagItem from "../src/components/tagItem.js";
 
+import MessageBanner from "../src/components/banners/messageBanner.js";
+
 import CloseIcon from "../src/components/icons/closeIcon.js";
+import InfoIcon from "../src/components/icons/infoIcon.js";
 import Spinner from "../src/components/icons/spinner.js";
 import OkayIcon from "../src/components/icons/okayIcon.js";
 import XIcon from "../src/components/icons/xIcon.js";
@@ -105,7 +108,7 @@ storiesOf("TagItem", module).add("defualt", () => (
       onClick={action("email")}
     />
     <TagItem
-      additionalContainerClasses={["b blue"]}
+      addContClasses={["b blue"]}
       additionalValueClasses={["dib"]}
       name="someKey"
       value="some deleteable property"
@@ -113,7 +116,7 @@ storiesOf("TagItem", module).add("defualt", () => (
     >
       <CloseIcon
         onClick={action("x-some-deleteable-property")}
-        additionalContainerClasses={["dim z1"]}
+        addContClasses={["dim z1"]}
         color="red"
         size="small"
       />
@@ -129,6 +132,10 @@ storiesOf("Select", module).add("default", () => {
       />
     </div>
   );
+});
+
+storiesOf("MessageBanner", module).add("default", () => {
+  return <MessageBanner>hello</MessageBanner>;
 });
 
 storiesOf("Spinner", module)
@@ -157,7 +164,7 @@ storiesOf("okayIcon", module)
         animate={true}
         fill="#cdecff"
         color="#357edd"
-        additionalContainerClasses={["grow"]}
+        addContClasses={["grow"]}
         strokeWidth=".4rem"
         onClick={action("clicked")}
       />
@@ -177,7 +184,7 @@ storiesOf("newCloseIcon", module).add("animated grow", () => (
     <CloseIconNew
       animate={true}
       onClick={action("close")}
-      additionalContainerClasses={["grow"]}
+      addContClasses={["grow"]}
       strokeWidth={3}
     />
   </div>
@@ -190,3 +197,5 @@ storiesOf("ErrorIcon", module)
       <ErrorIcon animate={true} strokeOpacity="0.7" strokeWidth="4" />
     </div>
   ));
+
+storiesOf("InfoIcon", module).add("default", () => <InfoIcon />);

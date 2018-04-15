@@ -6,8 +6,8 @@ import "../../thecss.css";
 import XIcon from "./xIcon.js";
 
 var CloseIconNew = function CloseIconNew(_ref) {
-  var additionalContainerClasses = _ref.additionalContainerClasses,
-      containerClasses = _ref.containerClasses,
+  var addContClasses = _ref.addContClasses,
+      contClasses = _ref.contClasses,
       animate = _ref.animate,
       color = _ref.color,
       fill = _ref.fill,
@@ -17,7 +17,7 @@ var CloseIconNew = function CloseIconNew(_ref) {
     "svg",
     {
       xmlns: "http://www.w3.org/svg",
-      className: [].concat(containerClasses, additionalContainerClasses, [animate ? "spin-once-fast" : "", onClick ? "pointer" : ""]).join(" "),
+      className: [].concat(contClasses, addContClasses, [animate ? "spin-once-fast" : "", onClick ? "pointer" : ""]).join(" "),
       viewBox: "0 0 100 100",
       onClick: onClick
     },
@@ -36,16 +36,16 @@ var CloseIconNew = function CloseIconNew(_ref) {
 };
 
 CloseIconNew.defaultProps = {
-  additionalContainerClasses: [],
-  containerClasses: ["w-100", "h-100"],
+  addContClasses: [],
+  contClasses: ["w-100", "h-100"],
   animate: false,
   color: "black",
   fill: "none",
   strokeWidth: 1
 };
 CloseIconNew.propTypes = process.env.NODE_ENV !== "production" ? {
-  additionalContainerClasses: PropTypes.arrayOf(PropTypes.string),
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,

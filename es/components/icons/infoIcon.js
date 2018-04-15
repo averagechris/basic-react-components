@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 
 import "../../thecss.css";
 
-var XIcon = function XIcon(_ref) {
+var InfoIcon = function InfoIcon(_ref) {
   var addContClasses = _ref.addContClasses,
       contClasses = _ref.contClasses,
       animate = _ref.animate,
       color = _ref.color,
       fill = _ref.fill,
+      strokeOpacity = _ref.strokeOpacity,
       strokeWidth = _ref.strokeWidth,
       onClick = _ref.onClick;
   return React.createElement(
@@ -19,40 +20,52 @@ var XIcon = function XIcon(_ref) {
       viewBox: "0 0 100 100",
       onClick: onClick
     },
-    React.createElement("path", {
+    React.createElement("circle", {
       className: animate ? "stroke-animate-fast" : "",
-      style: animate ? { strokeDasharray: 80 } : {},
+      style: animate ? { strokeDasharray: 285 } : {},
+      cx: "50",
+      cy: "50",
+      r: "45",
+      fill: fill,
       stroke: color,
-      strokeWidth: strokeWidth,
-      fill: "none",
-      d: "M30 30 l20 20 20 -20"
+      strokeWidth: strokeWidth
     }),
-    React.createElement("path", {
-      className: animate && "stroke-animate-fast",
-      style: animate ? { strokeDasharray: 80 } : {},
-      stroke: color,
-      strokeWidth: strokeWidth,
-      fill: "none",
-      d: "M30 70 l20 -20 20 20"
-    })
+    React.createElement(
+      "text",
+      {
+        style: {
+          cursor: "default",
+          userSelect: "none",
+          MozUserSelect: "none"
+        },
+        fillOpacity: strokeOpacity,
+        fill: color,
+        x: "44",
+        y: "65",
+        fontSize: "45"
+      },
+      "i"
+    )
   );
 };
 
-XIcon.defaultProps = {
+InfoIcon.defaultProps = {
   addContClasses: [],
   contClasses: ["w-100", "h-100"],
   animate: false,
   color: "black",
   fill: "none",
-  strokeWidth: 1
+  strokeWidth: 1,
+  strokeOpacity: "1"
 };
-XIcon.propTypes = process.env.NODE_ENV !== "production" ? {
+InfoIcon.propTypes = process.env.NODE_ENV !== "production" ? {
   addContClasses: PropTypes.arrayOf(PropTypes.string),
   contClasses: PropTypes.arrayOf(PropTypes.string),
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,
-  onClick: PropTypes.func
+  strokeOpacity: PropTypes.string,
+  onClick: PropTypes.func.isRequired
 } : {};
 
-export default XIcon;
+export default InfoIcon;

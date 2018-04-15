@@ -8,8 +8,8 @@ const SIZE_MAP = {
 };
 
 export const CloseIcon = ({
-  additionalContainerClasses,
-  containerClasses,
+  addContClasses,
+  contClasses,
   color,
   onClick,
   size,
@@ -17,7 +17,7 @@ export const CloseIcon = ({
   strokeWidth
 }) => (
   <span
-    className={[...containerClasses, ...additionalContainerClasses].join(" ")}
+    className={[...contClasses, ...addContClasses].join(" ")}
     onClick={onClick}
   >
     <svg
@@ -49,8 +49,8 @@ export const CloseIcon = ({
 );
 
 CloseIcon.propTypes = {
-  additionalContainerClasses: PropTypes.arrayOf(PropTypes.string),
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func.isRequired,
   color: PropTypes.string,
   size: (props, propName, componentName) => {
@@ -65,8 +65,8 @@ CloseIcon.propTypes = {
 };
 
 CloseIcon.defaultProps = {
-  additionalContainerClasses: [],
-  containerClasses: ["pointer", "w1"],
+  addContClasses: [],
+  contClasses: ["pointer", "w1"],
   color: "black",
   size: "medium",
   strokeWidth: "2px",

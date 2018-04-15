@@ -100,7 +100,7 @@ var Form = function (_Component) {
   Form.prototype.render = function render() {
     return React.createElement(
       "div",
-      { className: this.props.containerClasses.join(" ") },
+      { className: this.props.contClasses.join(" ") },
       React.createElement(
         "form",
         { className: "pa1 ph3-m ph4-ns", onSubmit: this.handleSubmit },
@@ -114,14 +114,14 @@ var Form = function (_Component) {
 
 Form.propTypes = process.env.NODE_ENV !== "production" ? {
   applyToChanges: PropTypes.arrayOf(PropTypes.func),
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func,
   onSubmit: PropTypes.func.isRequired
 } : {};
 
 Form.defaultProps = {
   applyToChanges: [function () {}],
-  containerClasses: []
+  contClasses: []
 };
 
 export default Form;

@@ -24,7 +24,7 @@ var FormInput = function (_Component) {
     var _this2 = this;
 
     var _props = this.props,
-        containerClasses = _props.containerClasses,
+        contClasses = _props.contClasses,
         error = _props.error,
         inputClasses = _props.inputClasses,
         labelClasses = _props.labelClasses,
@@ -34,7 +34,7 @@ var FormInput = function (_Component) {
         type = _props.type,
         uncontrolled = _props.uncontrolled,
         value = _props.value,
-        props = _objectWithoutProperties(_props, ["containerClasses", "error", "inputClasses", "labelClasses", "name", "onChange", "required", "type", "uncontrolled", "value"]);
+        props = _objectWithoutProperties(_props, ["contClasses", "error", "inputClasses", "labelClasses", "name", "onChange", "required", "type", "uncontrolled", "value"]);
 
     var id = name + "-input";
     var errorColor = error ? "dark-red" : "";
@@ -55,7 +55,7 @@ var FormInput = function (_Component) {
 
     return React.createElement(
       "div",
-      { className: containerClasses.join(" ") },
+      { className: contClasses.join(" ") },
       React.createElement(
         "label",
         { htmlFor: id, className: [errorColor].concat(labelClasses).join(" ") },
@@ -72,7 +72,7 @@ var FormInput = function (_Component) {
 }(Component);
 
 FormInput.propTypes = process.env.NODE_ENV !== "production" ? {
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   error: PropTypes.bool,
   inputClasses: PropTypes.arrayOf(PropTypes.string),
   labelClasses: PropTypes.arrayOf(PropTypes.string),
@@ -84,7 +84,7 @@ FormInput.propTypes = process.env.NODE_ENV !== "production" ? {
 } : {};
 
 FormInput.defaultProps = {
-  containerClasses: [],
+  contClasses: [],
   inputClasses: ["input-reset", "ba", "pa2", "mb2", "db", "w-100"],
   labelClasses: ["f6", "b", "db", "mb2"],
   required: false,

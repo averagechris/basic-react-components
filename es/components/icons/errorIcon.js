@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import "../../thecss.css";
 
 var ErrorIcon = function ErrorIcon(_ref) {
-  var additionalContainerClasses = _ref.additionalContainerClasses,
-      containerClasses = _ref.containerClasses,
+  var addContClasses = _ref.addContClasses,
+      contClasses = _ref.contClasses,
       animate = _ref.animate,
       color = _ref.color,
       fill = _ref.fill,
@@ -16,7 +16,7 @@ var ErrorIcon = function ErrorIcon(_ref) {
     "svg",
     {
       xmlns: "http://www.w3.org/svg",
-      className: [].concat(containerClasses, additionalContainerClasses, [animate ? "spin-once-fast" : "", onClick ? "pointer" : ""]).join(" "),
+      className: [].concat(contClasses, addContClasses, [animate ? "spin-once-fast" : "", onClick ? "pointer" : ""]).join(" "),
       viewBox: "0 0 100 100",
       onClick: onClick
     },
@@ -59,8 +59,8 @@ var ErrorIcon = function ErrorIcon(_ref) {
 };
 
 ErrorIcon.defaultProps = {
-  additionalContainerClasses: [],
-  containerClasses: ["w-100", "h-100"],
+  addContClasses: [],
+  contClasses: ["w-100", "h-100"],
   animate: false,
   color: "#e7040f",
   fill: "none",
@@ -68,13 +68,13 @@ ErrorIcon.defaultProps = {
   strokeWidth: 1
 };
 ErrorIcon.propTypes = process.env.NODE_ENV !== "production" ? {
-  additionalContainerClasses: PropTypes.arrayOf(PropTypes.string),
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,
   strokeOpacity: PropTypes.string,
-  strokeWidth: PropTypes.oneOf(PropTypes.string, PropTypes.number),
+  strokeWidth: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
   onClick: PropTypes.func
 } : {};
 

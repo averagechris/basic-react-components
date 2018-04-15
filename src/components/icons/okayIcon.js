@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import "../../thecss.css";
 
 const OkayIcon = ({
-  additionalContainerClasses,
-  containerClasses,
+  addContClasses,
+  contClasses,
   animate,
   color,
   fill,
@@ -15,8 +15,8 @@ const OkayIcon = ({
   <svg
     xmlns="http://www.w3.org/svg"
     className={[
-      ...containerClasses,
-      ...additionalContainerClasses,
+      ...contClasses,
+      ...addContClasses,
       animate ? "spin-once-fast" : "",
       onClick ? "pointer" : ""
     ].join(" ")}
@@ -45,16 +45,16 @@ const OkayIcon = ({
 );
 
 OkayIcon.defaultProps = {
-  additionalContainerClasses: [],
-  containerClasses: [],
+  addContClasses: [],
+  contClasses: [],
   animate: false,
   color: "#19a974",
   fill: "none",
   strokeWidth: 1
 };
 OkayIcon.propTypes = {
-  additionalContainerClasses: [],
-  containerClasses: ["w-100", "h-100"],
+  addContClasses: [],
+  contClasses: ["w-100", "h-100"],
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,

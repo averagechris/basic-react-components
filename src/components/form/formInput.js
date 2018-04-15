@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 class FormInput extends Component {
   render() {
     let {
-      containerClasses,
+      contClasses,
       error,
       inputClasses,
       labelClasses,
@@ -35,7 +35,7 @@ class FormInput extends Component {
     }
 
     return (
-      <div className={containerClasses.join(" ")}>
+      <div className={contClasses.join(" ")}>
         <label htmlFor={id} className={[errorColor, ...labelClasses].join(" ")}>
           {name}
           {required ? "*" : ""}
@@ -47,7 +47,7 @@ class FormInput extends Component {
 }
 
 FormInput.propTypes = {
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   error: PropTypes.bool,
   inputClasses: PropTypes.arrayOf(PropTypes.string),
   labelClasses: PropTypes.arrayOf(PropTypes.string),
@@ -59,7 +59,7 @@ FormInput.propTypes = {
 };
 
 FormInput.defaultProps = {
-  containerClasses: [],
+  contClasses: [],
   inputClasses: ["input-reset", "ba", "pa2", "mb2", "db", "w-100"],
   labelClasses: ["f6", "b", "db", "mb2"],
   required: false,

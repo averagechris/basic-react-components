@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export const TagItem = ({
-  additionalContainerClasses,
-  additionalLabelClasses,
-  additionalValueClasses,
-  containerClasses,
+  addContClasses,
+  addLabelClasses,
+  addValueClasses,
+  contClasses,
   labelClasses,
   valueClasses,
   name,
@@ -16,14 +16,11 @@ export const TagItem = ({
   children,
   ...props
 }) => (
-  <div
-    className={[...containerClasses, ...additionalContainerClasses].join(" ")}
-    {...props}
-  >
+  <div className={[...contClasses, ...addContClasses].join(" ")} {...props}>
     {label && (
       <span
         onClick={() => (name ? onClick(name) : onClick())}
-        className={[...labelClasses, ...additionalLabelClasses].join(" ")}
+        className={[...labelClasses, ...addLabelClasses].join(" ")}
       >
         {label}
         {separator && " |"}
@@ -32,7 +29,7 @@ export const TagItem = ({
     {children}
     <span
       onClick={() => (name ? onClick(name) : onClick())}
-      className={[...valueClasses, ...additionalValueClasses].join(" ")}
+      className={[...valueClasses, ...addValueClasses].join(" ")}
     >
       {value}
     </span>
@@ -40,10 +37,10 @@ export const TagItem = ({
 );
 
 TagItem.defaultProps = {
-  additionalContainerClasses: [],
-  additionalValueClasses: [],
-  additionalLabelClasses: [],
-  containerClasses: ["dib", "ba", "br4", "ph2", "pv1", "pointer"],
+  addContClasses: [],
+  addValueClasses: [],
+  addLabelClasses: [],
+  contClasses: ["dib", "ba", "br4", "ph2", "pv1", "pointer"],
   labelClasses: [],
   valueClasses: ["ml2"],
   onClick: () => {},
@@ -51,8 +48,8 @@ TagItem.defaultProps = {
 };
 
 TagItem.propTypes = {
-  additionalValueClasses: PropTypes.arrayOf(PropTypes.string),
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  addValueClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   labelClasses: PropTypes.arrayOf(PropTypes.string),
   valueClasses: PropTypes.arrayOf(PropTypes.string),
   name: PropTypes.string,

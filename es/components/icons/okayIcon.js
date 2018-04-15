@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import "../../thecss.css";
 
 var OkayIcon = function OkayIcon(_ref) {
-  var additionalContainerClasses = _ref.additionalContainerClasses,
-      containerClasses = _ref.containerClasses,
+  var addContClasses = _ref.addContClasses,
+      contClasses = _ref.contClasses,
       animate = _ref.animate,
       color = _ref.color,
       fill = _ref.fill,
@@ -15,7 +15,7 @@ var OkayIcon = function OkayIcon(_ref) {
     "svg",
     {
       xmlns: "http://www.w3.org/svg",
-      className: [].concat(containerClasses, additionalContainerClasses, [animate ? "spin-once-fast" : "", onClick ? "pointer" : ""]).join(" "),
+      className: [].concat(contClasses, addContClasses, [animate ? "spin-once-fast" : "", onClick ? "pointer" : ""]).join(" "),
       viewBox: "0 0 100 100",
       onClick: onClick
     },
@@ -41,16 +41,16 @@ var OkayIcon = function OkayIcon(_ref) {
 };
 
 OkayIcon.defaultProps = {
-  additionalContainerClasses: [],
-  containerClasses: [],
+  addContClasses: [],
+  contClasses: [],
   animate: false,
   color: "#19a974",
   fill: "none",
   strokeWidth: 1
 };
 OkayIcon.propTypes = process.env.NODE_ENV !== "production" ? {
-  additionalContainerClasses: [],
-  containerClasses: ["w-100", "h-100"],
+  addContClasses: [],
+  contClasses: ["w-100", "h-100"],
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,

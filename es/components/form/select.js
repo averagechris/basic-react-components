@@ -22,23 +22,21 @@ var Select = function (_Component) {
     var _this2 = this;
 
     var _props = this.props,
-        additionalContainerClasses = _props.additionalContainerClasses,
-        additionalOptionClasses = _props.additionalOptionClasses,
-        additionalSelectClasses = _props.additionalSelectClasses,
-        containerClasses = _props.containerClasses,
+        addContClasses = _props.addContClasses,
+        addOptionClasses = _props.addOptionClasses,
+        addSelectClasses = _props.addSelectClasses,
+        contClasses = _props.contClasses,
         optionClasses = _props.optionClasses,
         selectClasses = _props.selectClasses,
         options = _props.options;
 
     return React.createElement(
       "div",
-      {
-        className: [].concat(containerClasses, additionalContainerClasses).join(" ")
-      },
+      { className: [].concat(contClasses, addContClasses).join(" ") },
       React.createElement(
         "select",
         {
-          className: [].concat(selectClasses, additionalSelectClasses).join(" "),
+          className: [].concat(selectClasses, addSelectClasses).join(" "),
           ref: function ref(s) {
             return _this2.selectRef = s;
           }
@@ -47,7 +45,7 @@ var Select = function (_Component) {
           return React.createElement(
             "option",
             {
-              className: [].concat(optionClasses, additionalOptionClasses).join(" "),
+              className: [].concat(optionClasses, addOptionClasses).join(" "),
               key: "Select-option-" + o.text + "-" + i
             },
             o.text
@@ -55,7 +53,7 @@ var Select = function (_Component) {
         })
       ),
       React.createElement(ArrowIcon, {
-        containerClasses: ["mt2 mh2"],
+        contClasses: ["mt2 mh2"],
         color: "black",
         direction: "down",
         height: 18,
@@ -68,19 +66,19 @@ var Select = function (_Component) {
 }(Component);
 
 Select.defaultProps = {
-  additionalContainerClasses: [],
-  additionalOptionClasses: [],
-  additionalSelectClasses: [],
-  containerClasses: ["flex", "items-center", "ba", "b--black-80", "br1", "pre"],
+  addContClasses: [],
+  addOptionClasses: [],
+  addSelectClasses: [],
+  contClasses: ["flex", "items-center", "ba", "b--black-80", "br1", "pre"],
   optionClasses: ["bg-white"],
   selectClasses: ["w-100", "pa2", "input-reset", "bn"]
 };
 
 Select.propTypes = process.env.NODE_ENV !== "production" ? {
-  additionalContainerClasses: PropTypes.arrayOf(PropTypes.string),
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
   addititionalOptionClasses: PropTypes.arrayOf(PropTypes.string),
   addititionalSelectClasses: PropTypes.arrayOf(PropTypes.string),
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   optionClasses: PropTypes.arrayOf(PropTypes.string),
   selectClasses: PropTypes.arrayOf(PropTypes.string),
   options: PropTypes.arrayOf(PropTypes.shape({ text: PropTypes.string })).isRequired

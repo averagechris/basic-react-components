@@ -6,10 +6,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 var TagItem = function TagItem(_ref) {
-  var additionalContainerClasses = _ref.additionalContainerClasses,
-      additionalLabelClasses = _ref.additionalLabelClasses,
-      additionalValueClasses = _ref.additionalValueClasses,
-      containerClasses = _ref.containerClasses,
+  var addContClasses = _ref.addContClasses,
+      addLabelClasses = _ref.addLabelClasses,
+      addValueClasses = _ref.addValueClasses,
+      contClasses = _ref.contClasses,
       labelClasses = _ref.labelClasses,
       valueClasses = _ref.valueClasses,
       name = _ref.name,
@@ -18,20 +18,18 @@ var TagItem = function TagItem(_ref) {
       value = _ref.value,
       _onClick = _ref.onClick,
       children = _ref.children,
-      props = _objectWithoutProperties(_ref, ["additionalContainerClasses", "additionalLabelClasses", "additionalValueClasses", "containerClasses", "labelClasses", "valueClasses", "name", "label", "separator", "value", "onClick", "children"]);
+      props = _objectWithoutProperties(_ref, ["addContClasses", "addLabelClasses", "addValueClasses", "contClasses", "labelClasses", "valueClasses", "name", "label", "separator", "value", "onClick", "children"]);
 
   return React.createElement(
     "div",
-    _extends({
-      className: [].concat(containerClasses, additionalContainerClasses).join(" ")
-    }, props),
+    _extends({ className: [].concat(contClasses, addContClasses).join(" ") }, props),
     label && React.createElement(
       "span",
       {
         onClick: function onClick() {
           return name ? _onClick(name) : _onClick();
         },
-        className: [].concat(labelClasses, additionalLabelClasses).join(" ")
+        className: [].concat(labelClasses, addLabelClasses).join(" ")
       },
       label,
       separator && " |"
@@ -43,7 +41,7 @@ var TagItem = function TagItem(_ref) {
         onClick: function onClick() {
           return name ? _onClick(name) : _onClick();
         },
-        className: [].concat(valueClasses, additionalValueClasses).join(" ")
+        className: [].concat(valueClasses, addValueClasses).join(" ")
       },
       value
     )
@@ -52,10 +50,10 @@ var TagItem = function TagItem(_ref) {
 
 export { TagItem };
 TagItem.defaultProps = {
-  additionalContainerClasses: [],
-  additionalValueClasses: [],
-  additionalLabelClasses: [],
-  containerClasses: ["dib", "ba", "br4", "ph2", "pv1", "pointer"],
+  addContClasses: [],
+  addValueClasses: [],
+  addLabelClasses: [],
+  contClasses: ["dib", "ba", "br4", "ph2", "pv1", "pointer"],
   labelClasses: [],
   valueClasses: ["ml2"],
   onClick: function onClick() {},
@@ -63,8 +61,8 @@ TagItem.defaultProps = {
 };
 
 TagItem.propTypes = process.env.NODE_ENV !== "production" ? {
-  additionalValueClasses: PropTypes.arrayOf(PropTypes.string),
-  containerClasses: PropTypes.arrayOf(PropTypes.string),
+  addValueClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   labelClasses: PropTypes.arrayOf(PropTypes.string),
   valueClasses: PropTypes.arrayOf(PropTypes.string),
   name: PropTypes.string,
