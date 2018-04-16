@@ -1,6 +1,6 @@
 {
   "name": "basic-react-component-library",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "basic-react-component-library React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -43,6 +43,7 @@
   "license": "MIT",
   "repository": "https://github.com/mistahchris/basic-react-components",
   "keywords": [
-    "react-component"
+    "react-component",
+    "tachyons"
   ]
 }
