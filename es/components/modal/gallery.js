@@ -151,6 +151,7 @@ var Gallery = function (_Component2) {
   return Gallery;
 }(Component);
 
+Gallery.defaultProps = {};
 Gallery.propTypes = process.env.NODE_ENV !== "production" ? {
   handleClose: PropTypes.func.isRequired,
   images: PropTypes.arrayOf(PropTypes.string).isRequired

@@ -50,6 +50,7 @@ CloseIconNew.propTypes = process.env.NODE_ENV !== "production" ? {
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,
+  strokeWidth: PropTypes.number,
   onClick: PropTypes.func.isRequired
 } : {};
 

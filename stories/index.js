@@ -11,7 +11,7 @@ import Modal from "../src/components/modal/modal.js";
 import Select from "../src/components/form/select.js";
 import TagItem from "../src/components/tagItem.js";
 
-import MessageBanner from "../src/components/banners/messageBanner.js";
+/* import MessageBanner from "../src/components/banners/messageBanner.js"; */
 
 import CloseIcon from "../src/components/icons/closeIcon.js";
 import InfoIcon from "../src/components/icons/infoIcon.js";
@@ -134,34 +134,34 @@ storiesOf("Select", module).add("default", () => {
   );
 });
 
-storiesOf("MessageBanner", module)
-  .add("default", () => {
-    return <MessageBanner>hello</MessageBanner>;
-  })
-  .add("bottom fixed, basic notification", () => (
-    <div className="w-100 fixed bottom-0 sans-serif">
-      <MessageBanner
-        message="This app is a Progressive Web App and works offline!"
-        addContClasses={["ma1", "center", "tc"]}
-      />
-    </div>
-  ));
-
-storiesOf("NotificationBanner", module).add("dismissable information", () => {
-  return (
-    <div className="f4 sans-serif">
-      <MessageBanner
-        bgColorClass="bg-white-80"
-        fontColorClass="green"
-        addContClasses={["center", "tc", "ba", "br2"]}
-      >
-        <CloseIconNew addContClasses={["h2"]} />
-        Your post has been submitted.
-      </MessageBanner>
-    </div>
-  );
-});
-
+/* storiesOf("MessageBanner", module)
+ *   .add("default", () => {
+ *     return <MessageBanner>hello</MessageBanner>;
+ *   })
+ *   .add("bottom fixed, basic notification", () => (
+ *     <div className="w-100 fixed bottom-0 sans-serif">
+ *       <MessageBanner
+ *         message="This app is a Progressive Web App and works offline!"
+ *         addContClasses={["ma1", "center", "tc"]}
+ *       />
+ *     </div>
+ *   ));
+ *
+ * storiesOf("NotificationBanner", module).add("dismissable information", () => {
+ *   return (
+ *     <div className="f4 sans-serif">
+ *       <MessageBanner
+ *         bgColorClass="bg-white-80"
+ *         fontColorClass="green"
+ *         addContClasses={["center", "tc", "ba", "br2"]}
+ *       >
+ *         <CloseIconNew addContClasses={["h2"]} />
+ *         Your post has been submitted.
+ *       </MessageBanner>
+ *     </div>
+ *   );
+ * });
+ *  */
 storiesOf("Spinner", module)
   .add("default", () => {
     return <Spinner />;

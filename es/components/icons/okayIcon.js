@@ -55,7 +55,8 @@ OkayIcon.propTypes = process.env.NODE_ENV !== "production" ? {
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  strokeWidth: PropTypes.number
 } : {};
 
 export default OkayIcon;

@@ -99,7 +99,7 @@ ArrowIcon.propTypes = process.env.NODE_ENV !== "production" ? {
   width: PropTypes.number,
   strokeWidth: propValidator.endsWithpx,
   strokeOpacity: propValidator.isDecimal,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func
 } : {};
 
 ArrowIcon.defaultProps = {

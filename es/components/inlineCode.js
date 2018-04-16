@@ -3,10 +3,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 import React from "react";
+import PropTypes from "prop-types";
 
 import { concatClassNames } from "../helpers.js";
 
-export default (function (_ref) {
+var Code = function Code(_ref) {
   var children = _ref.children,
       text = _ref.text,
       props = _objectWithoutProperties(_ref, ["children", "text"]);
@@ -19,4 +20,11 @@ export default (function (_ref) {
     children,
     text
   );
-});
+};
+
+Code.defaultProps = {};
+
+Code.propTypes = process.env.NODE_ENV !== "production" ? {
+  text: PropTypes.node
+} : {};
+export default Code;

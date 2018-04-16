@@ -28,7 +28,7 @@ export const defaultPropsHaveTypeTest = Component => {
   });
 };
 
-const requiredPropsAreRequired = (Component, requiredProps) => {
+export const requiredPropsAreRequired = (Component, requiredProps) => {
   let propTypesMarkedRequired = Object.keys(Component.propTypes).filter(p => {
     let validator = Component.propTypes[p];
     return (

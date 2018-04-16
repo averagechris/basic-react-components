@@ -3,8 +3,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 export var propValidator = {
   endsWithpx: function endsWithpx(props, propName, componentName) {
     var p = props[propName];
-    var msg = "Invalid prop " + propName + " supplied to " + componentName + ". A string that ends with \"px\" is required. Received: \"" + p + "\".";
     if (!(typeof p === "string" && p.endsWith("px"))) {
+      var msg = "Invalid prop " + propName + " supplied to " + componentName + ". A string that ends with \"px\" is required. Received: \"" + p + "\".";
       return new Error(msg);
     }
   },
@@ -17,6 +17,7 @@ export var propValidator = {
     }
   }
 };
+
 export var cssTypes = {
   borderType: ["dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "none", "hidden"]
 };
@@ -26,7 +27,10 @@ export var concatClassNames = function concatClassNames() {
     args[_key] = arguments[_key];
   }
 
-  var filtered = [].concat.apply([], args).filter(function (c) {
+  var split = args.map(function (c) {
+    return typeof c === "string" ? c.split(" ") : c;
+  });
+  var filtered = [].concat.apply([], split).filter(function (c) {
     var isClassName = ["string", "undefined"].includes(typeof c === "undefined" ? "undefined" : _typeof(c));
     if (!isClassName) {
       throw new Error("classNames must be a string or undefined, recieved " + c);

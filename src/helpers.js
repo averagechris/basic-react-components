@@ -15,6 +15,7 @@ export const propValidator = {
     }
   }
 };
+
 export const cssTypes = {
   borderType: [
     "dotted",

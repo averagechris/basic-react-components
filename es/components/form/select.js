@@ -77,8 +77,8 @@ Select.defaultProps = {
 
 Select.propTypes = process.env.NODE_ENV !== "production" ? {
   addContClasses: PropTypes.arrayOf(PropTypes.string),
-  addititionalOptionClasses: PropTypes.arrayOf(PropTypes.string),
-  addititionalSelectClasses: PropTypes.arrayOf(PropTypes.string),
+  addOptionClasses: PropTypes.arrayOf(PropTypes.string),
+  addSelectClasses: PropTypes.arrayOf(PropTypes.string),
   contClasses: PropTypes.arrayOf(PropTypes.string),
   optionClasses: PropTypes.arrayOf(PropTypes.string),
   selectClasses: PropTypes.arrayOf(PropTypes.string),

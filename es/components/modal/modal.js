@@ -73,6 +73,8 @@ Modal.propTypes = process.env.NODE_ENV !== "production" ? {
   addBodyClasses: PropTypes.arrayOf(PropTypes.string),
   addDimmerClasses: PropTypes.arrayOf(PropTypes.string),
   bodyClasses: PropTypes.arrayOf(PropTypes.string),
+  bodyColorClass: PropTypes.string,
+  transparent: PropTypes.bool,
   dimmerClasses: PropTypes.arrayOf(PropTypes.string),
   dimmerColorClass: PropTypes.string,
   closeIconColor: PropTypes.string,

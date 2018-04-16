@@ -10,12 +10,14 @@ import { concatClassNames } from "../helpers.js";
 var Button = function Button(_ref) {
   var addClasses = _ref.addClasses,
       classes = _ref.classes,
+      children = _ref.children,
       text = _ref.text,
-      props = _objectWithoutProperties(_ref, ["addClasses", "classes", "text"]);
+      props = _objectWithoutProperties(_ref, ["addClasses", "classes", "children", "text"]);
 
   return React.createElement(
     "button",
     _extends({ className: concatClassNames(classes, addClasses) }, props),
+    children,
     text
   );
 };
@@ -24,7 +26,7 @@ Button.propTypes = process.env.NODE_ENV !== "production" ? {
   addClasses: PropTypes.arrayOf(PropTypes.string),
   classes: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func.isRequired,
-  text: PropTypes.node.isRequired
+  text: PropTypes.node
 } : {};
 
 Button.defaultProps = {
