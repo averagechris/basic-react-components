@@ -42,6 +42,6 @@ export const concatClassNames = (...args) => {
     }
     return typeof c === "string";
   });
-  let deduped = [...new Set(filtered)];
+  let deduped = Array.from(new Set(filtered));
   return deduped.join(" ");
 };

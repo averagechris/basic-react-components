@@ -16,6 +16,11 @@ describe("concatClassNamess", () => {
 
   test("throws when called with non-array or non-string values", () =>
     expect(() => f(["a", { hello: "there" }])).toThrow());
+
+  test("splits string elements on spaces, flattens the array", () =>
+    expect(f("hello world how", ["are you", "today"])).toBe(
+      "hello world how are you today"
+    ));
 });
 
 describe("propValidator.endsWithpx", () => {
