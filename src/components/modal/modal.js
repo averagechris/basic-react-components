@@ -62,8 +62,6 @@ Modal.propTypes = {
   handleClose: PropTypes.func.isRequired
 };
 Modal.defaultProps = {
-  addBodyClasses: [],
-  addDimmerClasses: [],
   bodyClasses: [
     "relative",
     "top-0",
