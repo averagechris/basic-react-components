@@ -57,7 +57,8 @@ XIcon.propTypes = {
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  strokeWidth: PropTypes.number
 };
 
 export default XIcon;

@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { concatClassNames } from "../helpers.js";
 
-export default ({ children, text, ...props }) => (
+const Code = ({ children, text, ...props }) => (
   <span
     className={concatClassNames(
       "courier",
@@ -17,3 +18,10 @@ export default ({ children, text, ...props }) => (
     {text}
   </span>
 );
+
+Code.defaultProps = {};
+
+Code.propTypes = {
+  text: PropTypes.node
+};
+export default Code;

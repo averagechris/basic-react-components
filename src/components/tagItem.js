@@ -50,7 +50,9 @@ TagItem.defaultProps = {
 };
 
 TagItem.propTypes = {
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
   addValueClasses: PropTypes.arrayOf(PropTypes.string),
+  addLabelClasses: PropTypes.arrayOf(PropTypes.string),
   contClasses: PropTypes.arrayOf(PropTypes.string),
   labelClasses: PropTypes.arrayOf(PropTypes.string),
   valueClasses: PropTypes.arrayOf(PropTypes.string),

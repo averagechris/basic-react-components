@@ -54,6 +54,7 @@ CloseIconNew.propTypes = {
   animate: PropTypes.bool,
   color: PropTypes.string,
   fill: PropTypes.string,
+  strokeWidth: PropTypes.number,
   onClick: PropTypes.func.isRequired
 };
 

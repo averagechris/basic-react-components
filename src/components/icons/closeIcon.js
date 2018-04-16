@@ -53,13 +53,7 @@ CloseIcon.propTypes = {
   contClasses: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func.isRequired,
   color: PropTypes.string,
-  size: (props, propName, componentName) => {
-    let p = props[propName];
-    if (!Object.keys(SIZE_MAP).includes(p))
-      return new Error(
-        `Validation for prop ${propName} failed in ${componentName}`
-      );
-  },
+  size: PropTypes.oneOf(Object.keys(SIZE_MAP)),
   strokeOpacity: propValidator.isDecimal,
   strokeWidth: propValidator.endsWithpx
 };

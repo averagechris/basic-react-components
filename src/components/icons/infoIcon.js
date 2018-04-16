@@ -69,6 +69,7 @@ InfoIcon.propTypes = {
   color: PropTypes.string,
   fill: PropTypes.string,
   strokeOpacity: PropTypes.string,
+  strokeWidth: PropTypes.number,
   onClick: PropTypes.func.isRequired
 };
 

@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 
 import { concatClassNames } from "../helpers.js";
 
-const Button = ({ addClasses, classes, text, ...props }) => (
+const Button = ({ addClasses, classes, children, text, ...props }) => (
   <button className={concatClassNames(classes, addClasses)} {...props}>
+    {children}
     {text}
   </button>
 );
@@ -13,7 +14,7 @@ Button.propTypes = {
   addClasses: PropTypes.arrayOf(PropTypes.string),
   classes: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func.isRequired,
-  text: PropTypes.node.isRequired
+  text: PropTypes.node
 };
 
 Button.defaultProps = {

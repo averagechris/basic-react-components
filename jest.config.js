@@ -1,1 +1,6 @@
-module.exports = { transform: { "^.+\\.js$": "<rootDir>/jest.transform.js" } };
+module.exports = {
+  moduleNameMapper: {
+    "\\.(css)$": "<rootDir>/jestCssMapper.js"
+  },
+  transform: { "^.+\\.js$": "<rootDir>/jest.transform.js" }
+};

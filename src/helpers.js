@@ -1,8 +1,8 @@
 export const propValidator = {
   endsWithpx: (props, propName, componentName) => {
     let p = props[propName];
-    let msg = `Invalid prop ${propName} supplied to ${componentName}. A string that ends with "px" is required. Received: "${p}".`;
     if (!(typeof p === "string" && p.endsWith("px"))) {
+      let msg = `Invalid prop ${propName} supplied to ${componentName}. A string that ends with "px" is required. Received: "${p}".`;
       return new Error(msg);
     }
   },
@@ -31,7 +31,8 @@ export const cssTypes = {
 };
 
 export const concatClassNames = (...args) => {
-  let filtered = [].concat.apply([], args).filter(c => {
+  let split = args.map(c => (typeof c === "string" ? c.split(" ") : c));
+  let filtered = [].concat.apply([], split).filter(c => {
     let isClassName = ["string", "undefined"].includes(typeof c);
     if (!isClassName) {
       throw new Error(

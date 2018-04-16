@@ -101,6 +101,7 @@ class Gallery extends Component {
   }
 }
 
+Gallery.defaultProps = {};
 Gallery.propTypes = {
   handleClose: PropTypes.func.isRequired,
   images: PropTypes.arrayOf(PropTypes.string).isRequired
