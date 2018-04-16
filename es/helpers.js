@@ -37,6 +37,6 @@ export var concatClassNames = function concatClassNames() {
     }
     return typeof c === "string";
   });
-  var deduped = [].concat(new Set(filtered));
+  var deduped = Array.from(new Set(filtered));
   return deduped.join(" ");
 };

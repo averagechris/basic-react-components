@@ -81,8 +81,6 @@ Modal.propTypes = process.env.NODE_ENV !== "production" ? {
   handleClose: PropTypes.func.isRequired
 } : {};
 Modal.defaultProps = {
-  addBodyClasses: [],
-  addDimmerClasses: [],
   bodyClasses: ["relative", "top-0", "top-1-m", "top-2-ns", "pa2", "mw7-m", "mw8-ns", "center", "br3"],
   dimmerClasses: ["fixed", "top-0", "left-0", "db", "z-1", "w-100", "h-100", "pt3", "bg-black-70", "overflow-container"],
   bodyColorClass: "bg-white",
