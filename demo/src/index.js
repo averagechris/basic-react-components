@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 
+import { Modal } from "../../es/";
 import Code from "../../src/components/inlineCode.js";
 
 class Demo extends Component {
   render() {
     return (
-      <p>
-        hello there <Code>this.isCode()</Code>
-      </p>
+      <Modal>
+        <p>
+          hello there <Code>this.isCode()</Code>
+        </p>
+      </Modal>
     );
   }
 }
