@@ -7,105 +7,80 @@ import FormInput from "./formInput.js";
 class Form extends Component {
   constructor() {
     super();
-    this.state = {
-      form: {}
-    };
+    ["handleSubmit", "renderChildren"].forEach(
+      fn => (this[fn] = this[fn].bind(this))
+    );
+    // this is used to store references to uncontrolled components
     this.formRefs = {};
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderChildren = this.renderChildren.bind(this);
+    // this is used to determine what children this component
+    // should "control"
+    this.formComponentTypes = [FormInput];
   }
-  updateFormState({ fieldName, newValue }) {
-    let { applyToChanges } = this.props;
-    let transformedValue = newValue;
 
-    // apply each function if it returns something
-    applyToChanges.forEach(f => {
-      let transformation = f({ fieldName, value: transformedValue });
-      if (typeof transformation === "string") {
-        transformedValue = transformation;
-      }
-    });
-
-    // call onChange with transformed values and set new state
-    this.setState(s => {
-      let newState = {
-        ...s,
-        form: { ...s.form, [fieldName]: transformedValue }
-      };
-      this.props.onChange && this.props.onChange(newState.form);
-      return newState;
-    });
-  }
   handleSubmit(e) {
     e.preventDefault();
-    let form = { ...this.state.form };
-    Object.values(this.formRefs).forEach(r => {
-      form[r.props.name] = r.inputRef.value;
-    });
-    this.props.onSubmit(form);
-  }
+    // copy formData from props
+    let form = { ...this.props.formData };
 
-  _setRef(refName, element) {
-    this.formRefs[refName] = element;
+    // add values from uncontrolled inputs
+    Object.values(this.formRefs).forEach(({ name, ref }) => {
+      form[name.toLowerCase()] = ref.value;
+    });
+
+    // submit form with data from both controlled and
+    // uncontrolled components
+    this.props.onSubmit(form);
   }
 
   renderChildren() {
     return React.Children.map(this.props.children, child => {
-      const formTypes = [FormInput];
-      if (child.props.uncontrolled && formTypes.includes(child.type)) {
+      let passUnmodified = !this.formComponentTypes.includes(child.type);
+      if (passUnmodified) return child;
+
+      let { name, uncontrolled } = child.props;
+      let childName = name;
+
+      if (uncontrolled) {
+        // pass down a function that can pass a reference to the
+        // input dom element back up
         return React.cloneElement(child, {
-          ref: r => this._setRef.bind(this, child.props.name.toLowerCase(), r)()
+          setRef: element => (this.formRefs[childName] = element)
         });
-      } else if (formTypes.includes(child.type)) {
-        return React.cloneElement(child, {
-          onChange: e =>
-            this.updateFormState({
-              fieldName: child.props.name.toLowerCase(),
-              newValue: e.target.value
-            }),
-          value: this.state.form[child.props.name.toLowerCase()] || ""
-        });
+
+        // if child should be a controlled form component
+        // add onChange and value props to it - to make it
+        // "controlled"
       } else {
-        return child;
+        return React.cloneElement(child, {
+          onChange: ({ name, value }) => this.props.onChange({ name, value }),
+          value: this.props.formData[childName] || ""
+        });
       }
     });
   }
   render() {
-    let {
-      addContClasses,
-      contClasses,
-      formClasses,
-      addFormClasses
-    } = this.props;
+    let { classes, addClasses } = this.props;
     return (
-      <div className={concatClassNames(contClasses, addContClasses)}>
-        <form
-          className={concatClassNames(formClasses, addFormClasses)}
-          onSubmit={this.handleSubmit}
-        >
-          {this.renderChildren()}
-        </form>
-      </div>
+      <form
+        className={concatClassNames(classes, addClasses)}
+        onSubmit={this.handleSubmit}
+      >
+        {this.renderChildren()}
+      </form>
     );
   }
 }
 
-Form.propTypes = {
-  applyToChanges: PropTypes.arrayOf(PropTypes.func),
-  addContClasses: PropTypes.arrayOf(PropTypes.string),
-  contClasses: PropTypes.arrayOf(PropTypes.string),
-  formClasses: PropTypes.arrayOf(PropTypes.string),
-  addFormClasses: PropTypes.arrayOf(PropTypes.string),
-  onChange: PropTypes.func,
-  onSubmit: PropTypes.func.isRequired
+Form.defaultProps = {
+  classes: ["pa1", "ph3-m", "ph4-ns"]
 };
 
-Form.defaultProps = {
-  addContClasses: [],
-  contClasses: [],
-  addFormClasses: [],
-  formClasses: ["pa1", "ph3-m", "ph4-ns"],
-  applyToChanges: [() => {}]
+Form.propTypes = {
+  classes: PropTypes.arrayOf(PropTypes.string),
+  addClasses: PropTypes.arrayOf(PropTypes.string),
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  formData: PropTypes.object
 };
 
 export default Form;

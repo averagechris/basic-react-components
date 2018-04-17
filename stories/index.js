@@ -33,19 +33,35 @@ storiesOf("Code", module).add("inline code", () => (
 
 storiesOf("Form", module)
   .add("form", () => {
-    return (
-      <div className="vh-100 w-40 helvetica dark-gray dt center">
-        <Form
-          onChange={action("change")}
-          onSubmit={action("submit")}
-          containerClasses={"v-mid center dtc".split(" ")}
-        >
-          <FormInput name="First Name" />
-          <FormInput name="Last Name" />
-          <Button text="SUBMIT" onClick={action("button-click")} />
-        </Form>
-      </div>
-    );
+    class MyApp extends React.Component {
+      constructor() {
+        super();
+        this.state = { formData: { "First Name": "", "Last Name": "" } };
+      }
+      render() {
+        return (
+          <div className="vh-100 w-40 helvetica dark-gray dt center">
+            <div className="v-mid center dtc">
+              <Form
+                onChange={({ name, value }) =>
+                  this.setState(s => ({
+                    ...s,
+                    formData: { ...s.formData, [name]: value }
+                  }))
+                }
+                onSubmit={action("submit")}
+                formData={this.state.formData}
+              >
+                <FormInput name="First Name" />
+                <FormInput name="Last Name" />
+                <Button text="SUBMIT" onClick={action("button-click")} />
+              </Form>
+            </div>
+          </div>
+        );
+      }
+    }
+    return <MyApp />;
   })
   .add("uncontrolled password", () => {
     return (
@@ -53,13 +69,7 @@ storiesOf("Form", module)
         <FormInput name="password" type="password" uncontrolled={true} />
       </Form>
     );
-  })
-  .add("disabled, error state", () => (
-    <Form onChange={action("change")} onSubmit={action("submit")}>
-      <FormInput name="disabled" disabled={true} />
-      <FormInput name="Some Invalid Input" error={true} required={true} />
-    </Form>
-  ));
+  });
 
 storiesOf("Modal", module)
   .add("basic", () => (
