@@ -42,7 +42,9 @@ class Modal extends Component {
             bodyColorClass
           )}
         >
-          <CloseIcon onClick={handleClose} color={closeIconColor} />
+          <div className="w1">
+            <CloseIcon onClick={handleClose} color={closeIconColor} />
+          </div>
           <div className="center w-90 ha mt3">{props.children}</div>
         </div>
       </div>

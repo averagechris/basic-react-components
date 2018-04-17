@@ -1,70 +1,61 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { concatClassNames, propValidator } from "../../helpers.js";
 
-const SIZE_MAP = {
-  small: { min: "1", max: "7" },
-  medium: { min: "1", max: "11" }
-};
+import "../../thecss.css";
 
-export const CloseIcon = ({
+import { concatClassNames } from "../../helpers.js";
+import XIcon from "./xIcon.js";
+
+const CloseIcon = ({
   addContClasses,
   contClasses,
+  animate,
   color,
-  onClick,
-  size,
-  strokeOpacity,
-  strokeWidth
+  fill,
+  strokeWidth,
+  onClick
 }) => (
-  <span
-    className={concatClassNames(contClasses, addContClasses)}
+  <svg
+    xmlns="http://www.w3.org/svg"
+    className={concatClassNames(
+      contClasses,
+      addContClasses,
+      animate ? "spin-once-fast" : undefined,
+      onClick ? "pointer" : undefined
+    )}
+    viewBox="0 0 100 100"
     onClick={onClick}
   >
-    <svg
-      height={String(Number(SIZE_MAP[size].max) + 1)}
-      width={String(Number(SIZE_MAP[size].max) + 1)}
-      version="1.1"
-      xmlns="http://www.w3.org/svg"
-    >
-      <line
-        x1={SIZE_MAP[size].min}
-        y1={SIZE_MAP[size].max}
-        x2={SIZE_MAP[size].max}
-        y2={SIZE_MAP[size].min}
-        stroke={color}
-        strokeOpacity={strokeOpacity}
-        strokeWidth={strokeWidth}
-      />
-      <line
-        x1={SIZE_MAP[size].min}
-        y1={SIZE_MAP[size].min}
-        x2={SIZE_MAP[size].max}
-        y2={SIZE_MAP[size].max}
-        stroke={color}
-        strokeOpacity={strokeOpacity}
-        strokeWidth={strokeWidth}
-      />
-    </svg>
-  </span>
+    <circle
+      className={concatClassNames(animate ? "stroke-animate-fast" : undefined)}
+      style={animate ? { strokeDasharray: 285 } : undefined}
+      cx="50"
+      cy="50"
+      r="45"
+      fill={fill}
+      stroke={color}
+      strokeWidth={strokeWidth}
+    />
+    <XIcon color={color} fill={fill} strokeWidth={strokeWidth} />
+  </svg>
 );
-
-CloseIcon.propTypes = {
-  addContClasses: PropTypes.arrayOf(PropTypes.string),
-  contClasses: PropTypes.arrayOf(PropTypes.string),
-  onClick: PropTypes.func.isRequired,
-  color: PropTypes.string,
-  size: PropTypes.oneOf(Object.keys(SIZE_MAP)),
-  strokeOpacity: propValidator.isDecimal,
-  strokeWidth: propValidator.endsWithpx
-};
 
 CloseIcon.defaultProps = {
   addContClasses: [],
-  contClasses: ["pointer", "w1"],
+  contClasses: ["w-100", "h-100"],
+  animate: false,
   color: "black",
-  size: "medium",
-  strokeWidth: "2px",
-  strokeOpacity: "0.7"
+  fill: "none",
+  strokeWidth: 1
+};
+CloseIcon.propTypes = {
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
+  animate: PropTypes.bool,
+  color: PropTypes.string,
+  fill: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  onClick: PropTypes.func.isRequired
 };
 
 export default CloseIcon;
