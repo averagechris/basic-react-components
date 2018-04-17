@@ -41,7 +41,7 @@ class FormInput extends Component {
           id={inputId}
           name={name}
           required={required}
-          className={concatClassNames(inputClasses, addLabelClasses)}
+          className={concatClassNames(inputClasses, addInputClasses)}
           type={type}
           aria-describedby={inputId}
           ref={uncontrolled ? r => setRef({ name, ref: r }) : undefined}
