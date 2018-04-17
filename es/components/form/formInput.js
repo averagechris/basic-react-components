@@ -23,78 +23,83 @@ var FormInput = function (_Component) {
   }
 
   FormInput.prototype.render = function render() {
-    var _this2 = this;
-
     var _props = this.props,
+        addContClasses = _props.addContClasses,
         contClasses = _props.contClasses,
-        error = _props.error,
+        addInputClasses = _props.addInputClasses,
         inputClasses = _props.inputClasses,
+        addLabelClasses = _props.addLabelClasses,
         labelClasses = _props.labelClasses,
+        errorColorClass = _props.errorColorClass,
+        error = _props.error,
         name = _props.name,
         onChange = _props.onChange,
         required = _props.required,
         type = _props.type,
+        setRef = _props.setRef,
         uncontrolled = _props.uncontrolled,
         value = _props.value,
-        props = _objectWithoutProperties(_props, ["contClasses", "error", "inputClasses", "labelClasses", "name", "onChange", "required", "type", "uncontrolled", "value"]);
+        props = _objectWithoutProperties(_props, ["addContClasses", "contClasses", "addInputClasses", "inputClasses", "addLabelClasses", "labelClasses", "errorColorClass", "error", "name", "onChange", "required", "type", "setRef", "uncontrolled", "value"]);
 
-    var id = name + "-input";
-    var errorColor = error ? "dark-red" : "";
-    var borderColor = error ? "b--dark-red" : "b--black-20";
-    var inputProps = _extends({
-      id: id,
-      name: name,
-      required: required,
-      className: [].concat(inputClasses, [borderColor]).join(" "),
-      type: type,
-      "aria-describedby": id
-    }, props);
-
-    if (!uncontrolled) {
-      inputProps.value = value;
-      inputProps.onChange = onChange;
-    }
-
+    var inputId = name + "-input";
     return React.createElement(
       "div",
-      { className: concatClassNames(contClasses) },
+      { className: concatClassNames(contClasses, addContClasses) },
       React.createElement(
         "label",
         {
-          htmlFor: id,
-          className: concatClassNames.apply(undefined, [errorColor].concat(labelClasses))
+          htmlFor: inputId,
+          className: concatClassNames(labelClasses, addLabelClasses, error ? errorColorClass : undefined)
         },
         name,
-        required ? "*" : ""
+        required ? "*" : undefined
       ),
-      React.createElement("input", _extends({}, inputProps, { ref: function ref(r) {
-          return _this2.inputRef = r;
-        } }))
+      React.createElement("input", _extends({
+        id: inputId,
+        name: name,
+        required: required,
+        className: concatClassNames(inputClasses, addLabelClasses),
+        type: type,
+        "aria-describedby": inputId,
+        ref: uncontrolled ? function (r) {
+          return setRef({ name: name, ref: r });
+        } : undefined,
+        value: uncontrolled ? undefined : value,
+        onChange: uncontrolled ? undefined : function (e) {
+          return onChange({ name: name, value: e.target.value });
+        }
+      }, props))
     );
   };
 
   return FormInput;
 }(Component);
 
-FormInput.propTypes = process.env.NODE_ENV !== "production" ? {
-  contClasses: PropTypes.arrayOf(PropTypes.string),
-  error: PropTypes.bool,
-  inputClasses: PropTypes.arrayOf(PropTypes.string),
-  labelClasses: PropTypes.arrayOf(PropTypes.string),
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
-  required: PropTypes.bool,
-  type: PropTypes.oneOf(["text", "password"]),
-  uncontrolled: PropTypes.bool
-} : {};
-
 FormInput.defaultProps = {
-  contClasses: [],
-  inputClasses: ["input-reset", "ba", "pa2", "mb2", "db", "w-100"],
+  inputClasses: ["input-reset", "ba", "pa2", "mb2", "db", "w-100", "b--black-20"],
   labelClasses: ["f6", "b", "db", "mb2"],
+  error: false,
+  errorColorClass: "dark-red",
   required: false,
   type: "text",
   uncontrolled: false
 };
+
+FormInput.propTypes = process.env.NODE_ENV !== "production" ? {
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
+  addInputClasses: PropTypes.arrayOf(PropTypes.string),
+  inputClasses: PropTypes.arrayOf(PropTypes.string),
+  addLabelClasses: PropTypes.arrayOf(PropTypes.string),
+  labelClasses: PropTypes.arrayOf(PropTypes.string),
+  name: PropTypes.string.isRequired,
+  error: PropTypes.bool,
+  errorColorClass: PropTypes.string,
+  onChange: PropTypes.func,
+  required: PropTypes.bool,
+  type: PropTypes.oneOf(["text", "password"]),
+  uncontrolled: PropTypes.bool,
+  setRef: PropTypes.func
+} : {};
 
 export default FormInput;

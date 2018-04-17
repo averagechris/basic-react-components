@@ -56,7 +56,11 @@ var Modal = function (_Component) {
         {
           className: concatClassNames(bodyClasses, addBodyClasses, bodyColorClass)
         },
-        React.createElement(CloseIcon, { onClick: handleClose, color: closeIconColor }),
+        React.createElement(
+          "div",
+          { className: "w1" },
+          React.createElement(CloseIcon, { onClick: handleClose, color: closeIconColor })
+        ),
         React.createElement(
           "div",
           { className: "center w-90 ha mt3" },

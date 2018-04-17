@@ -1,73 +1,57 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { concatClassNames, propValidator } from "../../helpers.js";
 
-var SIZE_MAP = {
-  small: { min: "1", max: "7" },
-  medium: { min: "1", max: "11" }
-};
+import "../../thecss.css";
 
-export var CloseIcon = function CloseIcon(_ref) {
+import { concatClassNames } from "../../helpers.js";
+import XIcon from "./xIcon.js";
+
+var CloseIcon = function CloseIcon(_ref) {
   var addContClasses = _ref.addContClasses,
       contClasses = _ref.contClasses,
+      animate = _ref.animate,
       color = _ref.color,
-      onClick = _ref.onClick,
-      size = _ref.size,
-      strokeOpacity = _ref.strokeOpacity,
-      strokeWidth = _ref.strokeWidth;
+      fill = _ref.fill,
+      strokeWidth = _ref.strokeWidth,
+      onClick = _ref.onClick;
   return React.createElement(
-    "span",
+    "svg",
     {
-      className: concatClassNames(contClasses, addContClasses),
+      xmlns: "http://www.w3.org/svg",
+      className: concatClassNames(contClasses, addContClasses, animate ? "spin-once-fast" : undefined, onClick ? "pointer" : undefined),
+      viewBox: "0 0 100 100",
       onClick: onClick
     },
-    React.createElement(
-      "svg",
-      {
-        height: String(Number(SIZE_MAP[size].max) + 1),
-        width: String(Number(SIZE_MAP[size].max) + 1),
-        version: "1.1",
-        xmlns: "http://www.w3.org/svg"
-      },
-      React.createElement("line", {
-        x1: SIZE_MAP[size].min,
-        y1: SIZE_MAP[size].max,
-        x2: SIZE_MAP[size].max,
-        y2: SIZE_MAP[size].min,
-        stroke: color,
-        strokeOpacity: strokeOpacity,
-        strokeWidth: strokeWidth
-      }),
-      React.createElement("line", {
-        x1: SIZE_MAP[size].min,
-        y1: SIZE_MAP[size].min,
-        x2: SIZE_MAP[size].max,
-        y2: SIZE_MAP[size].max,
-        stroke: color,
-        strokeOpacity: strokeOpacity,
-        strokeWidth: strokeWidth
-      })
-    )
+    React.createElement("circle", {
+      className: concatClassNames(animate ? "stroke-animate-fast" : undefined),
+      style: animate ? { strokeDasharray: 285 } : undefined,
+      cx: "50",
+      cy: "50",
+      r: "45",
+      fill: fill,
+      stroke: color,
+      strokeWidth: strokeWidth
+    }),
+    React.createElement(XIcon, { color: color, fill: fill, strokeWidth: strokeWidth })
   );
 };
 
+CloseIcon.defaultProps = {
+  addContClasses: [],
+  contClasses: ["w-100", "h-100"],
+  animate: false,
+  color: "black",
+  fill: "none",
+  strokeWidth: 1
+};
 CloseIcon.propTypes = process.env.NODE_ENV !== "production" ? {
   addContClasses: PropTypes.arrayOf(PropTypes.string),
   contClasses: PropTypes.arrayOf(PropTypes.string),
-  onClick: PropTypes.func.isRequired,
+  animate: PropTypes.bool,
   color: PropTypes.string,
-  size: PropTypes.oneOf(Object.keys(SIZE_MAP)),
-  strokeOpacity: propValidator.isDecimal,
-  strokeWidth: propValidator.endsWithpx
+  fill: PropTypes.string,
+  strokeWidth: PropTypes.number,
+  onClick: PropTypes.func.isRequired
 } : {};
-
-CloseIcon.defaultProps = {
-  addContClasses: [],
-  contClasses: ["pointer", "w1"],
-  color: "black",
-  size: "medium",
-  strokeWidth: "2px",
-  strokeOpacity: "0.7"
-};
 
 export default CloseIcon;

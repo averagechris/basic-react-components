@@ -22,8 +22,6 @@ import _ArrowIcon from "./components/icons/arrowIcon.js";
 export { _ArrowIcon as ArrowIcon };
 import _CloseIcon from "./components/icons/closeIcon.js";
 export { _CloseIcon as CloseIcon };
-import _CloseIconNew from "./components/icons/newCloseIcon.js";
-export { _CloseIconNew as CloseIconNew };
 import _ErrorIcon from "./components/icons/errorIcon.js";
 export { _ErrorIcon as ErrorIcon };
 import _InfoIcon from "./components/icons/infoIcon.js";

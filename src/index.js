@@ -16,7 +16,6 @@ export FormInput from "./components/form/formInput.js";
 export Select from "./components/form/select.js";
 export ArrowIcon from "./components/icons/arrowIcon.js";
 export CloseIcon from "./components/icons/closeIcon.js";
-export CloseIconNew from "./components/icons/newCloseIcon.js";
 export ErrorIcon from "./components/icons/errorIcon.js";
 export InfoIcon from "./components/icons/infoIcon.js";
 export OkayIcon from "./components/icons/okayIcon.js";

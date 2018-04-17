@@ -1,22 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 
 import { propValidator } from "../helpers.js";
 
 export var renderTest = function renderTest(Component, props) {
   test("it renders", function () {
-    var div = document.createElement("div");
-    ReactDOM.render(React.createElement(Component, props), div);
+    return expect(function () {
+      var div = document.createElement("div");
+      ReactDOM.render(React.createElement(Component, props), div);
+    }).not.toThrow();
   });
 };
-
 export var hasPropTypesTest = function hasPropTypesTest(Component) {
   test("has defined propTypes and defaultProps", function () {
     expect(Component).toHaveProperty("propTypes");
     expect(Component).toHaveProperty("defaultProps");
   });
 };
-
 export var defaultPropsHaveTypeTest = function defaultPropsHaveTypeTest(Component) {
   var propTypes = Object.keys(Component.propTypes);
   var defaultProps = Object.keys(Component.defaultProps);
@@ -27,7 +29,6 @@ export var defaultPropsHaveTypeTest = function defaultPropsHaveTypeTest(Componen
     });
   });
 };
-
 export var requiredPropsAreRequired = function requiredPropsAreRequired(Component, requiredProps) {
   var propTypesMarkedRequired = Object.keys(Component.propTypes).filter(function (p) {
     var validator = Component.propTypes[p];
@@ -47,7 +48,6 @@ export var requiredPropsAreRequired = function requiredPropsAreRequired(Componen
     });
   });
 };
-
 export var runAllComponentSmokeTests = function runAllComponentSmokeTests(Component, requiredProps) {
   [renderTest, hasPropTypesTest, defaultPropsHaveTypeTest, requiredPropsAreRequired].forEach(function (test) {
     return test(Component, requiredProps);
