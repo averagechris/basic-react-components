@@ -1,22 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import enzyme from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 
 import { propValidator } from "../helpers.js";
 
 export const renderTest = (Component, props) => {
-  test("it renders", () => {
-    let div = document.createElement("div");
-    ReactDOM.render(<Component {...props} />, div);
-  });
+  test("it renders", () =>
+    expect(() => {
+      let div = document.createElement("div");
+      ReactDOM.render(<Component {...props} />, div);
+    }).not.toThrow());
 };
-
 export const hasPropTypesTest = Component => {
   test("has defined propTypes and defaultProps", () => {
     expect(Component).toHaveProperty("propTypes");
     expect(Component).toHaveProperty("defaultProps");
   });
 };
-
 export const defaultPropsHaveTypeTest = Component => {
   let propTypes = Object.keys(Component.propTypes);
   let defaultProps = Object.keys(Component.defaultProps);
@@ -27,7 +28,6 @@ export const defaultPropsHaveTypeTest = Component => {
     });
   });
 };
-
 export const requiredPropsAreRequired = (Component, requiredProps) => {
   let propTypesMarkedRequired = Object.keys(Component.propTypes).filter(p => {
     let validator = Component.propTypes[p];
@@ -48,7 +48,6 @@ export const requiredPropsAreRequired = (Component, requiredProps) => {
       expect(propTypesMarkedRequired.includes(p)).toBe(true));
   });
 };
-
 export const runAllComponentSmokeTests = (Component, requiredProps) => {
   [
     renderTest,
