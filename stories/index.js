@@ -11,14 +11,14 @@ import Modal from "../src/components/modal/modal.js";
 import Select from "../src/components/form/select.js";
 import TagItem from "../src/components/tagItem.js";
 
-/* import MessageBanner from "../src/components/banners/messageBanner.js"; */
+import MessageBanner from "../src/components/banners/messageBanner.js";
+import Notification from "../src/components/banners/notification.js";
 
 import CloseIcon from "../src/components/icons/closeIcon.js";
 import InfoIcon from "../src/components/icons/infoIcon.js";
 import Spinner from "../src/components/icons/spinner.js";
 import OkayIcon from "../src/components/icons/okayIcon.js";
 import XIcon from "../src/components/icons/xIcon.js";
-import CloseIconNew from "../src/components/icons/newCloseIcon.js";
 import ErrorIcon from "../src/components/icons/errorIcon.js";
 
 storiesOf("Button", module).add("default", () => (
@@ -144,34 +144,22 @@ storiesOf("Select", module).add("default", () => {
   );
 });
 
-/* storiesOf("MessageBanner", module)
- *   .add("default", () => {
- *     return <MessageBanner>hello</MessageBanner>;
- *   })
- *   .add("bottom fixed, basic notification", () => (
- *     <div className="w-100 fixed bottom-0 sans-serif">
- *       <MessageBanner
- *         message="This app is a Progressive Web App and works offline!"
- *         addContClasses={["ma1", "center", "tc"]}
- *       />
- *     </div>
- *   ));
- *
- * storiesOf("NotificationBanner", module).add("dismissable information", () => {
- *   return (
- *     <div className="f4 sans-serif">
- *       <MessageBanner
- *         bgColorClass="bg-white-80"
- *         fontColorClass="green"
- *         addContClasses={["center", "tc", "ba", "br2"]}
- *       >
- *         <CloseIconNew addContClasses={["h2"]} />
- *         Your post has been submitted.
- *       </MessageBanner>
- *     </div>
- *   );
- * });
- *  */
+storiesOf("MessageBanner", module)
+  .add("default", () => {
+    return <MessageBanner>hello</MessageBanner>;
+  })
+  .add("bottom fixed, basic notification", () => (
+    <div className="w-100 fixed bottom-0 sans-serif">
+      <MessageBanner addContClasses={["ma1", "center", "tc"]}>
+        This app is a Progressive Web App and works offline!
+      </MessageBanner>
+    </div>
+  ));
+
+storiesOf("NotificationBanner", module).add("default", () => (
+  <Notification>Your post has been submitted.</Notification>
+));
+
 storiesOf("Spinner", module)
   .add("default", () => {
     return <Spinner />;
@@ -212,17 +200,6 @@ storiesOf("xIcon", module)
       <XIcon animate={true} color="red" />
     </div>
   ));
-
-storiesOf("newCloseIcon", module).add("animated grow", () => (
-  <div className="w5">
-    <CloseIconNew
-      animate={true}
-      onClick={action("close")}
-      addContClasses={["grow"]}
-      strokeWidth={3}
-    />
-  </div>
-));
 
 storiesOf("ErrorIcon", module)
   .add("default", () => <ErrorIcon />)

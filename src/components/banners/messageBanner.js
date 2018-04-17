@@ -1,43 +1,42 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { concatClassNames } from "../../helpers.js";
+import { concatClassNames, propValidator } from "../../helpers.js";
 
 const MessageBanner = ({
   addContClasses,
   contClasses,
-  bgColorClass,
-  fontColorClass,
-  message,
+  bgColor,
+  fontColor,
   children,
-  onClick
+  onClick,
+  ...props
 }) => (
   <div
     className={concatClassNames(
       contClasses,
       addContClasses,
-      bgColorClass,
-      fontColorClass,
+      bgColor || undefined,
+      fontColor || undefined,
       onClick ? "pointer" : undefined
     )}
+    onClick={onClick}
+    {...props}
   >
-    {message}
     {children}
   </div>
 );
 
 MessageBanner.defaultProps = {
-  addContClasses: [],
   contClasses: ["measure", "pa3", "pa4-m", "pa4-ns"],
-  bgColorClass: "bg-black-80",
-  fontColorClass: "white"
+  bgColor: "bg-black-80",
+  fontColor: "white"
 };
 MessageBanner.propTypes = {
-  addContClasses: PropTypes.arrayOf(PropTypes.string),
-  contClasses: PropTypes.arrayOf(PropTypes.string),
-  bgColorClass: PropTypes.string,
-  fontColorClass: PropTypes.string,
-  message: PropTypes.node,
+  addContClasses: propValidator.classNamesBasic,
+  contClasses: propValidator.classNamesBasic,
+  bgColor: propValidator.classNameOptional,
+  fontColor: propValidator.classNameOptional,
   onClick: PropTypes.func
 };
 
