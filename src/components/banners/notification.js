@@ -6,32 +6,31 @@ import MessageBanner from "./messageBanner.js";
 import InfoIcon from "../icons/infoIcon.js";
 
 const renderDefaultIcon = () => (
-  <div className="w1">
-    <InfoIcon color="white" />
+  <div className="w-70">
+    <InfoIcon color="white" strokeWidth={5} />
   </div>
 );
 
 const Notification = ({
+  addContClasses,
+  contClasses,
   borderColor,
   highlightFontColor,
   highlightColor,
-  messageBackgroundColor,
-  messageFontColor,
+  backgroundColor,
+  fontColor,
+  shadow,
   onClick,
   icon,
   children
 }) => {
   return (
-    <div className="dib">
+    <div className={concatClassNames(contClasses, addContClasses, shadow)}>
       <MessageBanner
         contClasses={[
-          "w-100",
-          "h3",
-          "flex",
-          "justify-start",
-          "items-center",
-          "ba",
-          "br1",
+          "w-100 h-100",
+          "flex justify-start items-center",
+          "ba br1",
           borderColor
         ]}
         bgColor={false}
@@ -42,20 +41,15 @@ const Notification = ({
           className={concatClassNames(
             "h-100",
             "w2",
-            "tc center",
+            "flex items-center justify-center",
             highlightColor,
-            highlightFontColor || undefined
+            highlightFontColor || undefined,
+            onClick ? "pointer" : undefined
           )}
         >
           {icon}
         </div>
-        <div
-          className={concatClassNames(
-            "ph3",
-            messageBackgroundColor,
-            messageFontColor
-          )}
-        >
+        <div className={concatClassNames("pa3", backgroundColor, fontColor)}>
           {children}
         </div>
       </MessageBanner>
@@ -64,19 +58,24 @@ const Notification = ({
 };
 
 Notification.defaultProps = {
+  contClasses: ["dib"],
   borderColor: "b--blue",
   highlightFontColor: "white",
   highlightColor: "bg-blue",
   highlightFontColor: "white",
-  icon: renderDefaultIcon()
+  icon: renderDefaultIcon(),
+  shadow: "shadow-1"
 };
 Notification.propTypes = {
+  addContClasses: PropTypes.arrayOf(PropTypes.string),
+  contClasses: PropTypes.arrayOf(PropTypes.string),
   icon: PropTypes.node,
   borderColor: PropTypes.string,
   highlightColor: PropTypes.string,
   highlightFontColor: propValidator.classNameOptional,
-  messageBackgroundColor: propValidator.classNameOptional,
-  messageFontColor: propValidator.classNameOptional
+  backgroundColor: propValidator.classNameOptional,
+  fontColor: propValidator.classNameOptional,
+  shadow: propValidator.classNameOptional
 };
 
 export default Notification;

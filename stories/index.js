@@ -156,9 +156,50 @@ storiesOf("MessageBanner", module)
     </div>
   ));
 
-storiesOf("NotificationBanner", module).add("default", () => (
-  <Notification>Your post has been submitted.</Notification>
-));
+storiesOf("NotificationBanner", module)
+  .add("default", () => (
+    <div className="sans-serif gray flex justify-start pa3">
+      <Notification onClick={action("click")}>
+        Your post has been submitted.
+      </Notification>
+    </div>
+  ))
+  .add("grow, with icon", () => (
+    <div className="sans-serif gray flex justify-start pa3 dim">
+      <Notification
+        icon={
+          <div className="w-70">
+            <ErrorIcon color="white" strokeWidth={5} />
+          </div>
+        }
+        highlightColor="bg-yellow"
+        borderColor="b--yellow"
+        shadow={false}
+        onClick={action("click")}
+      >
+        Your password has been reset.
+      </Notification>
+    </div>
+  ))
+  .add("lots of text", () => (
+    <div className="sans-serif gray flex justify-start pa3">
+      <Notification onClick={action("click")}>
+        This is so much text it's kind of crazy how many words there are in here
+        like why would you do this? there's probably a good reason but yeah ---
+        repeat! This is so much text it's kind of crazy how many words there are
+        in here like why would you do this? there's probably a good reason but
+        yeah
+      </Notification>
+    </div>
+  ))
+  .add("child h3 and span elements", () => (
+    <div className="sans-serif gray flex justify-start pa3">
+      <Notification onClick={action("click")}>
+        <h3>Welcome!</h3>
+        <span>Your acount has been created</span>
+      </Notification>
+    </div>
+  ));
 
 storiesOf("Spinner", module)
   .add("default", () => {
