@@ -67,7 +67,7 @@ InfoIcon.propTypes = process.env.NODE_ENV !== "production" ? {
   fill: PropTypes.string,
   strokeOpacity: PropTypes.string,
   strokeWidth: PropTypes.number,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func
 } : {};
 
 export default InfoIcon;

@@ -1,6 +1,15 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+import PropTypes from "prop-types";
+
 export var propValidator = {
+  classNameOptional: function classNameOptional(props, propName, componentName) {
+    var p = props[propName];
+
+    if (!(["undefined", "string"].includes(typeof p === "undefined" ? "undefined" : _typeof(p)) || p === false)) return new Error("Invalid prop " + propName + " supplied to " + componentName + ". Expected type \"string\" or value false, received " + p);
+  },
+  classNamesBasic: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+
   endsWithpx: function endsWithpx(props, propName, componentName) {
     var p = props[propName];
     if (!(typeof p === "string" && p.endsWith("px"))) {
@@ -31,7 +40,7 @@ export var concatClassNames = function concatClassNames() {
     return typeof c === "string" ? c.split(" ") : c;
   });
   var filtered = [].concat.apply([], split).filter(function (c) {
-    var isClassName = ["string", "undefined"].includes(typeof c === "undefined" ? "undefined" : _typeof(c));
+    var isClassName = ["string", "undefined"].includes(typeof c === "undefined" ? "undefined" : _typeof(c)) || c === false;
     if (!isClassName) {
       throw new Error("classNames must be a string or undefined, recieved " + c);
     }

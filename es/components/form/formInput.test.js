@@ -47,4 +47,10 @@ describe("FormInput - manual tests", () => {
     const input = component.find("input").getDOMNode();
     expect(mock).toHaveBeenCalledWith({ name: props.name, ref: input });
   });
+  test("iconFunc was not called when it was passed as a prop", () => {
+    const mock = jest.fn();
+    const props = { name: "hello", iconFunc: mock };
+    const component = enzyme.shallow(<FormInput {...props} />);
+    expect(mock).toHaveBeenCalledTimes(1);
+  });
 });

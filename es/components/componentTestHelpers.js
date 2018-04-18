@@ -1,9 +1,13 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 import React from "react";
 import ReactDOM from "react-dom";
 import enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import { propValidator } from "../helpers.js";
+
+enzyme.configure({ adapter: new Adapter() });
 
 export var renderTest = function renderTest(Component, props) {
   test("it renders", function () {
@@ -48,8 +52,28 @@ export var requiredPropsAreRequired = function requiredPropsAreRequired(Componen
     });
   });
 };
-export var runAllComponentSmokeTests = function runAllComponentSmokeTests(Component, requiredProps) {
-  [renderTest, hasPropTypesTest, defaultPropsHaveTypeTest, requiredPropsAreRequired].forEach(function (test) {
+export var clickHandlersGetClicked = function clickHandlersGetClicked(Component, requiredProps) {
+  var props = Object.keys(Component.propTypes);
+  if (!props.includes("onClick")) return;
+
+  test("onClick was not clicked after click simulation", function () {
+    var mock = jest.fn();
+    var comp = enzyme.mount(React.createElement(Component, _extends({}, requiredProps, { onClick: mock })));
+    comp.simulate("click");
+    expect(mock).toHaveBeenCalledTimes(1);
+  });
+  test("onClick was called a different number of times than it was clicked", function () {
+    var mock = jest.fn();
+    var comp = enzyme.mount(React.createElement(Component, _extends({}, requiredProps, { onClick: mock })));
+    comp.simulate("click").simulate("click").simulate("click");
+    expect(mock).toHaveBeenCalledTimes(3);
+  });
+};
+export var runAllComponentSmokeTests = function runAllComponentSmokeTests(Component, requiredProps, toSkip) {
+  var skipTests = toSkip || [];
+  [renderTest, hasPropTypesTest, defaultPropsHaveTypeTest, requiredPropsAreRequired, clickHandlersGetClicked].filter(function (t) {
+    return !skipTests.includes(t.name);
+  }).forEach(function (test) {
     return test(Component, requiredProps);
   });
 };

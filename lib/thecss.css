@@ -1,3 +1,10 @@
+.component-tooltip-container .component-tooltip-child {
+  visibility: hidden;
+}
+.component-tooltip-container:hover .component-tooltip-child {
+  visibility: visible;
+}
+
 .spin {
   animation: spinit 1s linear infinite;
 }
