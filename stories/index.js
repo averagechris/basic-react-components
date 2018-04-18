@@ -69,6 +69,57 @@ storiesOf("Form", module)
         <FormInput name="password" type="password" uncontrolled={true} />
       </Form>
     );
+  })
+  .add("form with error value", () => {
+    class MyApp extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          formData: { "Starts with invalid value": "error", "Field Name": "" }
+        };
+      }
+      render() {
+        let shouldShowError = fieldName =>
+          this.state.formData[fieldName].toLowerCase().includes("error");
+        let canSubmit =
+          !shouldShowError("Field Name") &&
+          !shouldShowError("Starts with invalid value") &&
+          Object.values(this.state.formData).filter(f => f.length > 1)
+            .length === Object.values(this.state.formData);
+
+        return (
+          <div className="vh-100 w-40 helvetica dark-gray dt center">
+            <div className="v-mid center dtc">
+              <Form
+                onChange={({ name, value }) =>
+                  this.setState(s => ({
+                    ...s,
+                    formData: { ...s.formData, [name]: value }
+                  }))
+                }
+                onSubmit={action("submit")}
+                formData={this.state.formData}
+              >
+                <FormInput name="Field Name" required={true} />
+                <FormInput
+                  name="Starts with invalid value"
+                  error={shouldShowError("Starts with invalid value")}
+                />
+                <Button
+                  text="SUBMIT"
+                  disabled={
+                    shouldShowError("Starts with invalid value") ||
+                    shouldShowError("Field Name")
+                  }
+                  onClick={action("button-click")}
+                />
+              </Form>
+            </div>
+          </div>
+        );
+      }
+    }
+    return <MyApp />;
   });
 
 storiesOf("Modal", module)
