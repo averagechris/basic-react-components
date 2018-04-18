@@ -5,6 +5,8 @@ import Adapter from "enzyme-adapter-react-16";
 
 import { propValidator } from "../helpers.js";
 
+enzyme.configure({ adapter: new Adapter() });
+
 export const renderTest = (Component, props) => {
   test("it renders", () =>
     expect(() => {
@@ -48,11 +50,35 @@ export const requiredPropsAreRequired = (Component, requiredProps) => {
       expect(propTypesMarkedRequired.includes(p)).toBe(true));
   });
 };
-export const runAllComponentSmokeTests = (Component, requiredProps) => {
+export const clickHandlersGetClicked = (Component, requiredProps) => {
+  let props = Object.keys(Component.propTypes);
+  if (!props.includes("onClick")) return;
+
+  test("onClick was not clicked after click simulation", () => {
+    let mock = jest.fn();
+    let comp = enzyme.mount(<Component {...requiredProps} onClick={mock} />);
+    comp.simulate("click");
+    expect(mock).toHaveBeenCalledTimes(1);
+  });
+  test("onClick was called a different number of times than it was clicked", () => {
+    let mock = jest.fn();
+    let comp = enzyme.mount(<Component {...requiredProps} onClick={mock} />);
+    comp
+      .simulate("click")
+      .simulate("click")
+      .simulate("click");
+    expect(mock).toHaveBeenCalledTimes(3);
+  });
+};
+export const runAllComponentSmokeTests = (Component, requiredProps, toSkip) => {
+  let skipTests = toSkip || [];
   [
     renderTest,
     hasPropTypesTest,
     defaultPropsHaveTypeTest,
-    requiredPropsAreRequired
-  ].forEach(test => test(Component, requiredProps));
+    requiredPropsAreRequired,
+    clickHandlersGetClicked
+  ]
+    .filter(t => !skipTests.includes(t.name))
+    .forEach(test => test(Component, requiredProps));
 };
