@@ -4,7 +4,7 @@ export const propValidator = {
   classNameOptional: (props, propName, componentName) => {
     let p = props[propName];
 
-    if (!(typeof p === "string" || p === false))
+      if (!(["undefined", "string"].includes(typeof p) || p === false ))
       return new Error(
         `Invalid prop ${propName} supplied to ${componentName}. Expected type "string" or value false, received ${p}`
       );
