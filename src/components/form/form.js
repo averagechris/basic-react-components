@@ -5,7 +5,7 @@ import { concatClassNames } from "../../helpers.js";
 import FormInput from "./formInput.js";
 
 class Form extends Component {
-  constructor() {
+  constructor(props) {
     super();
     ["handleSubmit", "renderChildren"].forEach(
       fn => (this[fn] = this[fn].bind(this))
@@ -14,7 +14,7 @@ class Form extends Component {
     this.formRefs = {};
     // this is used to determine what children this component
     // should "control"
-    this.formComponentTypes = [FormInput];
+    this.formComponentTypes = [FormInput, ...props.componentTypesToRegister];
   }
 
   handleSubmit(e) {
@@ -72,7 +72,8 @@ class Form extends Component {
 }
 
 Form.defaultProps = {
-  classes: ["pa1", "ph3-m", "ph4-ns"]
+  classes: ["pa1", "ph3-m", "ph4-ns"],
+  componentTypesToRegister: []
 };
 
 Form.propTypes = {
@@ -80,7 +81,8 @@ Form.propTypes = {
   addClasses: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  formData: PropTypes.object
+  formData: PropTypes.object,
+  componentTypesToRegister: PropTypes.arrayOf(PropTypes.element)
 };
 
 export default Form;
