@@ -15,7 +15,7 @@ import FormInput from "./formInput.js";
 var Form = function (_Component) {
   _inherits(Form, _Component);
 
-  function Form() {
+  function Form(props) {
     _classCallCheck(this, Form);
 
     var _this = _possibleConstructorReturn(this, _Component.call(this));
@@ -27,7 +27,7 @@ var Form = function (_Component) {
     _this.formRefs = {};
     // this is used to determine what children this component
     // should "control"
-    _this.formComponentTypes = [FormInput];
+    _this.formComponentTypes = [FormInput].concat(props.componentTypesToRegister);
     return _this;
   }
 
@@ -81,7 +81,7 @@ var Form = function (_Component) {
                 value = _ref2.value;
             return _this2.props.onChange({ name: name, value: value });
           },
-          value: _this2.props.formData[childName] || ""
+          value: _this2.props.formData[childName].value || ""
         });
       }
     });
@@ -106,7 +106,8 @@ var Form = function (_Component) {
 }(Component);
 
 Form.defaultProps = {
-  classes: ["pa1", "ph3-m", "ph4-ns"]
+  classes: ["pa1", "ph3-m", "ph4-ns"],
+  componentTypesToRegister: []
 };
 
 Form.propTypes = process.env.NODE_ENV !== "production" ? {
@@ -114,7 +115,8 @@ Form.propTypes = process.env.NODE_ENV !== "production" ? {
   addClasses: PropTypes.arrayOf(PropTypes.string),
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  formData: PropTypes.object
+  formData: PropTypes.object,
+  componentTypesToRegister: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.element, PropTypes.func]))
 } : {};
 
 export default Form;

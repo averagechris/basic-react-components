@@ -53,7 +53,7 @@ class Form extends Component {
       } else {
         return React.cloneElement(child, {
           onChange: ({ name, value }) => this.props.onChange({ name, value }),
-          value: this.props.formData[childName] || ""
+          value: this.props.formData[childName].value || ""
         });
       }
     });
@@ -82,7 +82,9 @@ Form.propTypes = {
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   formData: PropTypes.object,
-  componentTypesToRegister: PropTypes.arrayOf(PropTypes.element)
+  componentTypesToRegister: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.element, PropTypes.func])
+  )
 };
 
 export default Form;
